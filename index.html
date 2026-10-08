@@ -78,7 +78,7 @@ thead th{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:va
 td.na{color:var(--muted)}
 .msg{padding:18px 14px;text-align:center;color:var(--muted);font-size:.9rem}
 main>*{min-width:0}
-main>section:not(.hero),main>footer{width:100%;max-width:760px;justify-self:center}
+main>section:not(.hero):not(.wx),main>footer{width:100%;max-width:760px;justify-self:center}
 .hero{display:grid;grid-template-columns:1fr;gap:14px}
 @media (min-width:900px){.hero{grid-template-columns:repeat(3,1fr)}}
 .hc{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:14px;padding:16px 16px 4px;display:grid;gap:6px;min-width:0;box-shadow:0 1px 2px rgba(60,40,20,.05)}
@@ -109,6 +109,57 @@ footer{font-size:.75rem;color:var(--muted);display:grid;gap:6px}
 footer a{color:inherit}
 @media (min-width:640px){.row .vl b{font-size:1.35rem}.calc .f{grid-template-columns:repeat(3,1fr)}.calc .full{grid-column:auto}.res{grid-template-columns:repeat(3,1fr)}}
 @media (prefers-reduced-motion:no-preference){.tab{transition:background .15s,color .15s}}
+
+/* ---- Clima ---- */
+.wx{--sun:#d99400;--rain:#2b78bd;--wind:#2f8a7b}
+@media (prefers-color-scheme:dark){.wx{--sun:#f0b43a;--rain:#6aaee8;--wind:#5cc2b0}}
+.wx-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px 10px;display:grid;gap:10px;min-width:0}
+.wx-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wx-now{display:flex;align-items:center;gap:10px}
+.wx-now svg{width:52px;height:52px;flex:0 0 52px}
+.wx-t{font-size:2.4rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.wx-t sup{font-size:1rem;font-weight:700;vertical-align:top;margin-left:1px}
+.wx-c{display:grid;font-size:.82rem;color:var(--muted)}
+.wx-c b{color:var(--fg);font-size:.95rem}
+.wx-meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.wx-meta b{color:var(--fg)}
+.wx-tabs{display:flex;gap:18px;border-bottom:1px solid var(--line)}
+.wx-tabs button{font:inherit;font-size:.88rem;background:none;border:0;border-bottom:3px solid transparent;padding:6px 0 7px;color:var(--muted);cursor:pointer;min-height:36px}
+.wx-tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--sun);font-weight:700}
+.wx-tabs button:focus-visible,.wx-days button:focus-visible,.wx-more:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.wx-ch{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.wx-ch svg{display:block;height:140px}
+.wx-days{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(64px,1fr);gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.wx-days::-webkit-scrollbar{display:none}
+.wx-days button{font:inherit;color:var(--fg);background:transparent;border:1px solid transparent;border-radius:10px;padding:6px 2px;display:grid;justify-items:center;gap:2px;cursor:pointer;min-height:44px}
+.wx-days button:hover,.wx-days button.on{background:var(--strip);border-color:var(--line)}
+.wx-days .dn{font-size:.82rem;font-weight:600}
+.wx-days svg{width:30px;height:30px}
+.wx-days .tt{font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.wx-days .tt span{color:var(--muted)}
+.wx-days .pp{font-size:.7rem;color:var(--rain);font-weight:600;min-height:1em}
+.wx-ft{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:8px;font-size:.75rem;color:var(--muted)}
+.wx-more{white-space:nowrap;font:inherit;font-size:.85rem;font-weight:700;color:var(--fg);background:var(--strip);border:0;border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}
+dialog.wx7{border:0;border-radius:16px;padding:0;width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 32px);background:var(--surface);color:var(--fg);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
+.wx7-h{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);z-index:1}
+.wx7-h h3{margin:0;font-size:1.05rem}
+.wx7-h small{display:block;font-weight:400;color:var(--muted);font-size:.78rem}
+.wx7-x{font:inherit;font-size:1.4rem;line-height:1;background:var(--strip);border:0;border-radius:999px;width:40px;height:40px;cursor:pointer;color:var(--fg)}
+.wx7-l{display:grid;padding:4px 16px 16px}
+.wx7-r{display:grid;grid-template-columns:auto 40px 1fr auto;align-items:center;gap:4px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.wx7-r:last-child{border-bottom:0}
+.wx7-r.on{background:linear-gradient(90deg,var(--strip),transparent);border-radius:10px;padding-left:8px;margin-left:-8px}
+.wx7-r .d{font-weight:700;font-size:.92rem;min-width:4.6rem}
+.wx7-r .d small{display:block;font-weight:400;color:var(--muted);font-size:.75rem}
+.wx7-r svg{width:36px;height:36px}
+.wx7-r .c{font-size:.85rem;min-width:0}
+.wx7-r .c small{display:block;color:var(--muted);font-size:.75rem;font-variant-numeric:tabular-nums}
+.wx7-r .t{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.wx7-r .t b{font-size:1.05rem}
+.wx7-r .t span{color:var(--muted)}
+.wx7-bar{grid-column:2/-1;height:6px;border-radius:3px;background:var(--line);position:relative}
+.wx7-bar i{position:absolute;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,#f2c14e,#e07b2c)}
 </style>
 </head>
 <body>
@@ -120,6 +171,11 @@ footer a{color:inherit}
 </header>
 
 <main>
+  <section class="wx" aria-labelledby="h-wx">
+    <h2 id="h-wx" style="color:var(--fg)">Clima · Ibirapitanga</h2>
+    <div class="wx-card" id="wx"><div class="msg">Carregando a previsão do tempo…</div></div>
+  </section>
+
   <section class="hero" aria-label="Destaques do dia" id="hero">
     <div class="hc" style="--acc:var(--cocoa)"><div class="msg">Carregando cacau…</div></div>
     <div class="hc" style="--acc:var(--pasture)"><div class="msg">Carregando bezerro…</div></div>
@@ -166,11 +222,16 @@ footer a{color:inherit}
   </section>
 
   <footer>
-    <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e Bolsa de Nova York (cacau), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>. Gado atualizado todo dia às 6h52; cacau de hora em hora das 8h às 15h nos dias úteis.</span>
+    <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e Bolsa de Nova York (cacau), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>. Gado atualizado todo dia às 6h52; cacau de hora em hora das 8h às 15h nos dias úteis. Previsão do tempo: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, atualizada a cada visita.</span>
     <span>Valores de referência da Bahia e do Sul da Bahia; o preço de cada negócio varia com peso, padrão e frete. Bezerro em R$/@: preço por cabeça dividido pelas arrobas de referência (1@ = 30 kg vivos). Cacau: R$ por arroba de 15 kg. “Mantido de” = a fonte não publicou desde essa data.</span>
     <div class="disc"><span>Portal independente de acompanhamento do mercado de cacau e gado no Brasil. Os preços são informativos e não constituem recomendação de compra ou venda.</span><span>Desenvolvido por <b>Leandro Damasceno</b></span></div>
   </footer>
 </main>
+
+<dialog class="wx7" id="wx7" aria-labelledby="wx7-t">
+  <div class="wx7-h"><h3 id="wx7-t">Previsão para 7 dias<small>Ibirapitanga · BA</small></h3><button type="button" class="wx7-x" id="wx7-x" aria-label="Fechar">×</button></div>
+  <div class="wx7-l" id="wx7-l"></div>
+</dialog>
 
 <script>
 (function(){
@@ -357,6 +418,102 @@ footer a{color:inherit}
   }
   load();
   document.addEventListener("visibilitychange", function(){ if(document.visibilityState==="visible" && rows.length) load(); });
+})();
+</script>
+<script>
+(function(){
+  var LAT=-14.1642, LON=-39.3736;
+  var URL="https://api.open-meteo.com/v1/forecast?latitude="+LAT+"&longitude="+LON+
+    "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day"+
+    "&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m"+
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,sunrise,sunset"+
+    "&timezone=America%2FBahia&forecast_days=8&wind_speed_unit=kmh";
+  var box=document.getElementById("wx"), dlg=document.getElementById("wx7"), W=null, tab="t", lastLoad=0;
+  var DIAS=["dom.","seg.","ter.","qua.","qui.","sex.","sáb."], DIASL=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+  function n(v,d){ return (v==null||isNaN(v))?"–":Number(v).toLocaleString("pt-BR",{minimumFractionDigits:d||0,maximumFractionDigits:d||0}); }
+  function kind(c){ if(c==null) return "cloud"; if(c===0) return "sun"; if(c<=2) return "part"; if(c===3) return "cloud"; if(c===45||c===48) return "fog"; if(c>=95) return "storm"; if((c>=51&&c<=67)||(c>=80&&c<=82)) return "rain"; return "cloud"; }
+  function desc(c){ var m={0:"Céu limpo",1:"Predomínio de sol",2:"Parcialmente nublado",3:"Nublado",45:"Neblina",48:"Neblina",51:"Garoa fraca",53:"Garoa",55:"Garoa forte",56:"Garoa",57:"Garoa",61:"Chuva fraca",63:"Chuva moderada",65:"Chuva forte",66:"Chuva",67:"Chuva forte",80:"Pancadas fracas",81:"Pancadas de chuva",82:"Pancadas fortes",95:"Trovoadas",96:"Trovoadas com granizo",99:"Trovoadas com granizo"}; return m[c]||"Nublado"; }
+  function icon(c,night){
+    var k=kind(c), SUN='<circle cx="24" cy="24" r="9" fill="#f6b21b"/><g stroke="#f6b21b" stroke-width="3" stroke-linecap="round"><path d="M24 6v5M24 37v5M6 24h5M37 24h5M11.3 11.3l3.5 3.5M33.2 33.2l3.5 3.5M11.3 36.7l3.5-3.5M33.2 14.8l3.5-3.5"/></g>',
+        MOON='<path d="M30 10a14 14 0 1 0 8 25A16 16 0 0 1 30 10z" fill="#c9b98a"/>',
+        CL=function(f,x,y){return '<path transform="translate('+(x||0)+','+(y||0)+')" d="M14 38h22a8 8 0 0 0 0-16 11 11 0 0 0-21-2 8 8 0 0 0-1 18z" fill="'+f+'"/>';};
+    var g;
+    if(k==="sun") g = night?MOON:SUN;
+    else if(k==="part") g = '<g transform="translate(-6,-6) scale(.85)">'+(night?MOON:SUN)+'</g>'+CL("#cfd6de",4,4);
+    else if(k==="cloud") g = CL("#aeb8c3",0,0);
+    else if(k==="fog") g = CL("#c3cad2",0,-4)+'<g stroke="#9aa5b1" stroke-width="3" stroke-linecap="round"><path d="M10 42h28M14 47h20"/></g>';
+    else if(k==="rain") g = CL("#9aa7b5",0,-4)+'<g stroke="#2b78bd" stroke-width="3" stroke-linecap="round"><path d="M17 40l-2 5M25 40l-2 5M33 40l-2 5"/></g>';
+    else g = CL("#8793a1",0,-4)+'<path d="M25 36l-5 8h5l-3 7 9-10h-5l3-5z" fill="#f6b21b"/>';
+    return '<svg viewBox="0 0 48 52" aria-hidden="true">'+g+'</svg>';
+  }
+  function dayIdx(iso){ return new Date(iso+"T12:00:00").getDay(); }
+  function hourIdxNow(){ var h=W.hourly.time, now=W.current&&W.current.time?W.current.time.slice(0,13):null, i=0;
+    if(now){ for(var k=0;k<h.length;k++){ if(h[k].slice(0,13)===now){ i=k; break; } } } return i; }
+  function chart(){
+    var H=W.hourly, i0=hourIdxNow(), N=25, pts=[], key = tab==="t"?"temperature_2m":tab==="r"?"precipitation_probability":"wind_speed_10m";
+    var col = tab==="t"?"var(--sun)":tab==="r"?"var(--rain)":"var(--wind)", unit = tab==="t"?"°":tab==="r"?"%":"";
+    for(var k=i0;k<Math.min(i0+N,H.time.length);k++) pts.push({t:H.time[k].slice(11,16), v:H[key][k], c:H.weather_code[k]});
+    var Wd=Math.max(560,(box.clientWidth||600)-32), Ht=140, pl=16, pr=16, top=26, bot=28, vs=pts.map(function(p){return p.v==null?0:p.v;});
+    var lo=Math.min.apply(null,vs), hi=Math.max.apply(null,vs);
+    if(tab==="r"){ lo=0; hi=Math.max(100,hi); } else { var sp=(hi-lo)||2; lo-=sp*.35; hi+=sp*.25; if(tab==="w") lo=Math.max(0,lo); }
+    var x=function(i){return pl+i/(pts.length-1)*(Wd-pl-pr);}, y=function(v){return top+(1-(v-lo)/(hi-lo))*(Ht-top-bot);};
+    var g="", d="";
+    if(tab==="r"){
+      var bw=(Wd-pl-pr)/pts.length*.62;
+      pts.forEach(function(p,i){ var yy=y(p.v||0); g+='<rect x="'+(x(i)-bw/2).toFixed(1)+'" y="'+yy.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+(Ht-bot-yy).toFixed(1)+'" rx="2" fill="'+col+'" opacity=".75"/>'; });
+    } else {
+      d=pts.map(function(p,i){return (i?"L":"M")+x(i).toFixed(1)+","+y(p.v).toFixed(1);}).join("");
+      g+='<path d="'+d+'L'+x(pts.length-1)+','+(Ht-bot)+'L'+x(0)+','+(Ht-bot)+'Z" fill="'+col+'" opacity=".18"/><path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="2.5" stroke-linejoin="round"/>';
+    }
+    pts.forEach(function(p,i){ if(i%3) return;
+      g+='<text x="'+x(i)+'" y="'+(y(p.v||0)-8)+'" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">'+n(p.v)+unit+'</text>'+
+         '<text x="'+x(i)+'" y="'+(Ht-8)+'" text-anchor="middle" font-size="11" fill="var(--muted)">'+(i===0?"Agora":p.t)+'</text>';
+    });
+    return '<svg width="'+Wd+'" viewBox="0 0 '+Wd+' '+Ht+'" role="img" aria-label="Previsão das próximas 24 horas">'+g+'</svg>';
+  }
+  function render(){
+    var C=W.current, D=W.daily, night=C.is_day===0;
+    var days=D.time.slice(0,8).map(function(t,i){
+      return '<button type="button" data-d="'+i+'" class="'+(i===0?"on":"")+'" aria-label="'+DIASL[dayIdx(t)]+': máxima '+n(D.temperature_2m_max[i])+'°, mínima '+n(D.temperature_2m_min[i])+'°"><span class="dn">'+(i===0?"hoje":DIAS[dayIdx(t)])+'</span>'+icon(D.weather_code[i])+
+             '<span class="tt"><b>'+n(D.temperature_2m_max[i])+'°</b> <span>'+n(D.temperature_2m_min[i])+'°</span></span><span class="pp">'+((D.precipitation_probability_max[i]||0)>=20?"💧"+n(D.precipitation_probability_max[i])+"%":"")+'</span></button>';
+    }).join("");
+    box.innerHTML =
+      '<div class="wx-top"><div class="wx-now">'+icon(C.weather_code,night)+'<span class="wx-t">'+n(C.temperature_2m)+'<sup>°C</sup></span>'+
+        '<span class="wx-c"><b>'+desc(C.weather_code)+'</b>Máx '+n(D.temperature_2m_max[0])+'° · Mín '+n(D.temperature_2m_min[0])+'°</span></div>'+
+        '<div class="wx-meta"><span>Sensação <b>'+n(C.apparent_temperature)+'°</b></span><span>Umidade <b>'+n(C.relative_humidity_2m)+'%</b></span><span>Vento <b>'+n(C.wind_speed_10m)+' km/h</b></span><span>Chuva hoje <b>'+n(D.precipitation_probability_max[0])+'%</b></span></div></div>'+
+      '<div class="wx-tabs" role="tablist"><button type="button" role="tab" data-t="t" aria-selected="'+(tab==="t")+'">Temperatura</button><button type="button" role="tab" data-t="r" aria-selected="'+(tab==="r")+'">Chuva</button><button type="button" role="tab" data-t="w" aria-selected="'+(tab==="w")+'">Vento</button></div>'+
+      '<div class="wx-ch">'+chart()+'</div>'+
+      '<div class="wx-days" aria-label="Próximos dias">'+days+'</div>'+
+      '<div class="wx-ft"><span>Toque em um dia para ver a previsão completa</span><button type="button" class="wx-more" id="wx-more">7 dias ›</button></div>';
+  }
+  function open7(sel){
+    var D=W.daily, gmin=Math.min.apply(null,D.temperature_2m_min.slice(0,8)), gmax=Math.max.apply(null,D.temperature_2m_max.slice(0,8)), span=(gmax-gmin)||1;
+    document.getElementById("wx7-l").innerHTML = D.time.slice(0,8).map(function(t,i){
+      var dd=t.split("-"), l=(D.temperature_2m_min[i]-gmin)/span*100, w=(D.temperature_2m_max[i]-D.temperature_2m_min[i])/span*100;
+      return '<div class="wx7-r'+(i===sel?" on":"")+'" id="wx7-'+i+'"><span class="d">'+(i===0?"Hoje":DIASL[dayIdx(t)])+'<small>'+dd[2]+'/'+dd[1]+'</small></span>'+icon(D.weather_code[i])+
+        '<span class="c">'+desc(D.weather_code[i])+'<small>💧 '+n(D.precipitation_probability_max[i])+'% · '+n(D.precipitation_sum[i],1)+' mm · 🌬 '+n(D.wind_speed_10m_max[i])+' km/h</small></span>'+
+        '<span class="t"><b>'+n(D.temperature_2m_max[i])+'°</b> <span>'+n(D.temperature_2m_min[i])+'°</span></span>'+
+        '<span class="wx7-bar"><i style="left:'+l.toFixed(0)+'%;width:'+Math.max(w,4).toFixed(0)+'%"></i></span></div>';
+    }).join("");
+    if(dlg.showModal){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute("open","");
+    var r=document.getElementById("wx7-"+sel); if(r&&sel>1) r.scrollIntoView({block:"center"});
+  }
+  function close7(){ if(dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+  box.addEventListener("click",function(e){
+    var t=e.target.closest("[data-t]"); if(t){ tab=t.getAttribute("data-t"); render(); return; }
+    var d=e.target.closest("[data-d]"); if(d){ open7(+d.getAttribute("data-d")); return; }
+    if(e.target.closest("#wx-more")) open7(0);
+  });
+  document.getElementById("wx7-x").addEventListener("click",close7);
+  var rz; window.addEventListener("resize",function(){ clearTimeout(rz); rz=setTimeout(function(){ if(W) render(); },200); });
+  dlg.addEventListener("click",function(e){ if(e.target===dlg) close7(); });
+  function load(){
+    lastLoad=Date.now();
+    fetch(URL).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(j){ if(!j||!j.daily||!j.hourly||!j.current) throw 0; W=j; render(); })
+    .catch(function(){ if(!W) box.innerHTML='<div class="msg">Previsão do tempo indisponível no momento. Recarregue a página mais tarde.</div>'; });
+  }
+  load();
+  document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="visible" && Date.now()-lastLoad>30*60*1000) load(); });
 })();
 </script>
 </body>
