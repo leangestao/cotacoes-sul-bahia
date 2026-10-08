@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-07T18:52:49-03:00",
+ "atualizadoEm": "2026-10-08T08:32:52-03:00",
  "fontes": "Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e ICE Nova York (cacau) — via Notícias Agrícolas",
  "cotacoes": [
   {
@@ -74,7 +74,11 @@
    "bez_nel_ba": 3545,
    "bez_mes_ba": 2987.45,
    "desm_nel_ba": 3087.5,
-   "bez_media_br": 3668.78
+   "bez_media_br": 3668.78,
+   "bez_cepea_ms": 3470.58,
+   "cacau_ba_conv": 290,
+   "cacau_ba_cert": 371,
+   "cacau_ny": 5582
   }
  ]
 }
