@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-08T20:32:00-03:00",
+  "atualizadoEm": "2026-10-08T20:46:00-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga).",
   "cotacoes": [
     {
@@ -124,7 +124,7 @@
       "data": "2026-10-08",
       "cacau_ba_conv": 280.13,
       "cacau_ba_cert": 361.42,
-      "cacau_ny": 5508,
+      "cacau_ny": 5617,
       "cacau_hora": "19:00"
     }
   ]
