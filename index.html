@@ -128,7 +128,7 @@ footer a{color:inherit}
   </section>
 
   <footer>
-    <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e Bolsa de Nova York (cacau), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>. Atualizado em dias úteis, no fim da tarde.</span>
+    <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e Bolsa de Nova York (cacau), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>. Gado atualizado todo dia às 6h52; cacau de hora em hora das 8h às 15h nos dias úteis.</span>
     <span>Valores de referência da Bahia e do Sul da Bahia; o preço de cada negócio varia com peso, padrão e frete. Bezerro em R$/@: preço por cabeça dividido pelas arrobas de referência (1@ = 30 kg vivos). Cacau: R$ por arroba de 15 kg. “Mantido de” = a fonte não publicou desde essa data.</span>
   </footer>
 </main>
@@ -136,7 +136,7 @@ footer a{color:inherit}
 <script>
 (function(){
   var DATA_URL = "https://raw.githubusercontent.com/leangestao/cotacoes-sul-bahia/main/cotacoes.json";
-  var rows = [];
+  var rows = [], upd = null;
   var $ = function(id){ return document.getElementById(id); };
   function brl(v,d){ return v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d}); }
   function dm(s){ var p=s.split("-"); return p[2]+"/"+p[1]; }
@@ -237,7 +237,9 @@ footer a{color:inherit}
   }
   function render(){
     var last=rows[rows.length-1];
-    $("when").innerHTML = last ? 'Cotações de<b>'+dmy(last.data)+'</b>' : 'Sem dados';
+    var hora = "";
+    if(upd){ var t=new Date(upd); if(!isNaN(t)) hora = t.toLocaleString("pt-BR",{timeZone:"America/Bahia",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).replace(",", " às"); }
+    $("when").innerHTML = last ? 'Cotações de<b>'+dmy(last.data)+'</b>'+(hora?'<small style="display:block;opacity:.85">atualizado '+hora+'</small>':'') : 'Sem dados';
     list($("l-gado"), ITEMS.gado); list($("l-cacau"), ITEMS.cacau);
     drawTabs(); drawChart(); calc(); hist();
   }
@@ -249,6 +251,7 @@ footer a{color:inherit}
   function load(){
     fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
     .then(function(j){
+      upd=j.atualizadoEm||null;
       rows=(j.cotacoes||[]).filter(function(r){return r&&r.data;}).sort(function(a,b){return a.data<b.data?-1:1;});
       render();
     }).catch(function(){
