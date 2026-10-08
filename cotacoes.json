@@ -1,16 +1,80 @@
 {
-  "atualizadoEm": "2026-10-07T18:30:00-03:00",
-  "fontes": "Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e ICE Nova York (cacau) — via Notícias Agrícolas",
-  "cotacoes": [
-    {"data":"2026-09-23","bez_cepea_ms":3414.22,"cacau_ba_conv":256,"cacau_ba_cert":347},
-    {"data":"2026-09-24","bez_cepea_ms":3421.35,"cacau_ba_conv":280,"cacau_ba_cert":358},
-    {"data":"2026-09-25","bez_cepea_ms":3426.02,"cacau_ba_conv":289,"cacau_ba_cert":367},
-    {"data":"2026-09-28","bez_cepea_ms":3437.62,"cacau_ba_conv":285,"cacau_ba_cert":373},
-    {"data":"2026-09-29","bez_cepea_ms":3436.66,"cacau_ba_conv":283,"cacau_ba_cert":372},
-    {"data":"2026-09-30","bez_cepea_ms":3446.14,"cacau_ba_conv":263,"cacau_ba_cert":351},
-    {"data":"2026-10-01","bez_cepea_ms":3453.55,"cacau_ba_conv":246,"cacau_ba_cert":334},
-    {"data":"2026-10-02","bez_cepea_ms":3456.83,"cacau_ba_conv":281,"cacau_ba_cert":369},
-    {"data":"2026-10-05","bez_cepea_ms":3461.27,"cacau_ba_conv":288,"cacau_ba_cert":372,"boi_ba_sul":346},
-    {"data":"2026-10-06","bez_cepea_ms":3467.5,"cacau_ba_conv":295,"cacau_ba_cert":376,"cacau_ny":5700,"bez_nel_ba":3545,"bez_mes_ba":2987.45,"desm_nel_ba":3087.5,"bez_media_br":3668.78}
-  ]
+ "atualizadoEm": "2026-10-07T18:52:49-03:00",
+ "fontes": "Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e ICE Nova York (cacau) — via Notícias Agrícolas",
+ "cotacoes": [
+  {
+   "data": "2026-09-23",
+   "bez_cepea_ms": 3414.22,
+   "cacau_ba_conv": 256,
+   "cacau_ba_cert": 347
+  },
+  {
+   "data": "2026-09-24",
+   "bez_cepea_ms": 3421.35,
+   "cacau_ba_conv": 280,
+   "cacau_ba_cert": 358
+  },
+  {
+   "data": "2026-09-25",
+   "bez_cepea_ms": 3426.02,
+   "cacau_ba_conv": 289,
+   "cacau_ba_cert": 367
+  },
+  {
+   "data": "2026-09-28",
+   "bez_cepea_ms": 3437.62,
+   "cacau_ba_conv": 285,
+   "cacau_ba_cert": 373
+  },
+  {
+   "data": "2026-09-29",
+   "bez_cepea_ms": 3436.66,
+   "cacau_ba_conv": 283,
+   "cacau_ba_cert": 372
+  },
+  {
+   "data": "2026-09-30",
+   "bez_cepea_ms": 3446.14,
+   "cacau_ba_conv": 263,
+   "cacau_ba_cert": 351
+  },
+  {
+   "data": "2026-10-01",
+   "bez_cepea_ms": 3453.55,
+   "cacau_ba_conv": 246,
+   "cacau_ba_cert": 334
+  },
+  {
+   "data": "2026-10-02",
+   "bez_cepea_ms": 3456.83,
+   "cacau_ba_conv": 281,
+   "cacau_ba_cert": 369
+  },
+  {
+   "data": "2026-10-05",
+   "bez_cepea_ms": 3461.27,
+   "cacau_ba_conv": 288,
+   "cacau_ba_cert": 372,
+   "boi_ba_sul": 346
+  },
+  {
+   "data": "2026-10-06",
+   "bez_cepea_ms": 3467.5,
+   "cacau_ba_conv": 295,
+   "cacau_ba_cert": 376,
+   "cacau_ny": 5700,
+   "bez_nel_ba": 3545,
+   "bez_mes_ba": 2987.45,
+   "desm_nel_ba": 3087.5,
+   "bez_media_br": 3668.78,
+   "boi_ba_sul": 350
+  },
+  {
+   "data": "2026-10-07",
+   "bez_nel_ba": 3545,
+   "bez_mes_ba": 2987.45,
+   "desm_nel_ba": 3087.5,
+   "bez_media_br": 3668.78
+  }
+ ]
 }
