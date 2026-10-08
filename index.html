@@ -13,26 +13,27 @@
 <style>
 /* Mobile-first: barra fixa com a data → lista de cotações (linha = produto) → gráfico com abas → calculadora → histórico */
 :root{
-  --bg:#f3f4ef; --surface:#ffffff; --line:#dfe2d8; --fg:#1d221b; --muted:#5d6557;
+  --bg:#f6f1ea; --surface:#ffffff; --line:#e6ded2; --fg:#24190f; --muted:#6b5f52;
   --brand:#2f5a28; --brand-ink:#ffffff; --cocoa:#6b3a22; --pasture:#3e6b35;
-  --up:#2f7a3a; --down:#b23a2a; --flat:#757b6f; --soft:#e6eee2;
+  --up:#2f7a3a; --down:#b23a2a; --flat:#757b6f; --soft:#efe6da;
+  --ox:#9a6a1c; --strip:#efe4d6;
   --f:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:#121510; --surface:#1b1f19; --line:#2e342a; --fg:#e8ebe3; --muted:#a2aa98;
+  --bg:#15120f; --surface:#1f1a16; --line:#352d25; --fg:#f0e9e0; --muted:#b0a493;
   --brand:#24461f; --brand-ink:#eef3ea; --cocoa:#d69c78; --pasture:#93c583;
-  --up:#83d18b; --down:#f28d7d; --flat:#9ba191; --soft:#1f2a1c; color-scheme:dark}}
+  --up:#83d18b; --down:#f28d7d; --flat:#9ba191; --soft:#2a221b; --ox:#d9a650; --strip:#2b231c; color-scheme:dark}}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--fg);font-family:var(--f);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
 .top{position:sticky;top:0;z-index:5;background:var(--brand);color:var(--brand-ink);padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px}
-.top-in{max-width:760px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top-in{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .brand{font-weight:800;font-size:1.05rem;letter-spacing:.01em}
 .brand small{display:block;font-weight:500;font-size:.75rem;opacity:.85}
 .when{text-align:right;font-size:.78rem;opacity:.95;font-variant-numeric:tabular-nums}
 .when b{display:block;font-size:.95rem}
-main{max-width:760px;margin:0 auto;padding:14px 16px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:18px}
+main{max-width:1080px;margin:0 auto;padding:14px 16px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:18px}
 h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px;font-weight:700}
 .g h2{color:var(--pasture)} .c h2{color:var(--cocoa)}
 .list{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -73,6 +74,33 @@ thead th{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:va
 td.na{color:var(--muted)}
 .msg{padding:18px 14px;text-align:center;color:var(--muted);font-size:.9rem}
 main>*{min-width:0}
+main>section:not(.hero),main>footer{width:100%;max-width:760px;justify-self:center}
+.hero{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:900px){.hero{grid-template-columns:repeat(3,1fr)}}
+.hc{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:14px;padding:16px 16px 4px;display:grid;gap:6px;min-width:0;box-shadow:0 1px 2px rgba(60,40,20,.05)}
+.hc-h{display:flex;align-items:center;gap:10px}
+.hc-ic{width:30px;height:30px;flex:0 0 30px;color:var(--acc)}
+.hc-t{font-weight:700;font-size:1rem;line-height:1.2}
+.hc-s{font-size:.8rem;color:var(--muted)}
+.hc-p{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-top:6px}
+.hc-v{font-size:2.3rem;font-weight:800;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hc-v small{font-size:1.15rem;font-weight:700;color:var(--muted);letter-spacing:0}
+.hc .pill{font-size:.8rem;padding:3px 9px;margin-top:4px}
+.hc-u{font-size:.82rem;color:var(--muted)}
+.hc-rg{display:flex;justify-content:flex-end;gap:2px;margin-top:4px}
+.hc-rg button{font:inherit;font-size:.72rem;font-weight:700;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:3px 9px;min-height:28px;cursor:pointer}
+.hc-rg button[aria-pressed="true"]{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.hc-rg button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.hc svg{width:100%;height:64px;display:block}
+.hc-mm{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.hc-st{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--strip);border-radius:10px;padding:10px 12px;margin-top:4px;font-size:.85rem;font-variant-numeric:tabular-nums}
+.hc-st b{font-weight:800}
+.hc-st .d{font-weight:700;font-size:.8rem;margin-left:6px}
+.hc-ft{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:12px 0;margin-top:6px;font-size:.85rem;color:var(--muted)}
+.hc-ft b{font-variant-numeric:tabular-nums}
+.pos{color:var(--up)} .neg{color:var(--down)} .neu{color:var(--muted)}
+.disc{border-top:1px solid var(--line);padding-top:12px;margin-top:6px;font-size:.8rem;color:var(--fg);display:grid;gap:4px;text-align:center}
+.disc b{font-weight:700}
 footer{font-size:.75rem;color:var(--muted);display:grid;gap:6px}
 footer a{color:inherit}
 @media (min-width:640px){.row .vl b{font-size:1.35rem}.calc .f{grid-template-columns:repeat(3,1fr)}.calc .full{grid-column:auto}.res{grid-template-columns:repeat(3,1fr)}}
@@ -88,6 +116,12 @@ footer a{color:inherit}
 </header>
 
 <main>
+  <section class="hero" aria-label="Destaques do dia" id="hero">
+    <div class="hc" style="--acc:var(--cocoa)"><div class="msg">Carregando cacau…</div></div>
+    <div class="hc" style="--acc:var(--pasture)"><div class="msg">Carregando bezerro…</div></div>
+    <div class="hc" style="--acc:var(--ox)"><div class="msg">Carregando boi gordo…</div></div>
+  </section>
+
   <section class="g" aria-labelledby="h-g">
     <h2 id="h-g">Gado</h2>
     <div class="list" id="l-gado"><div class="msg">Buscando cotações…</div></div>
@@ -130,6 +164,7 @@ footer a{color:inherit}
   <footer>
     <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e Bolsa de Nova York (cacau), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>. Gado atualizado todo dia às 6h52; cacau de hora em hora das 8h às 15h nos dias úteis.</span>
     <span>Valores de referência da Bahia e do Sul da Bahia; o preço de cada negócio varia com peso, padrão e frete. Bezerro em R$/@: preço por cabeça dividido pelas arrobas de referência (1@ = 30 kg vivos). Cacau: R$ por arroba de 15 kg. “Mantido de” = a fonte não publicou desde essa data.</span>
+    <div class="disc"><span>Portal independente de acompanhamento do mercado de cacau e gado no Brasil. Os preços são informativos e não constituem recomendação de compra ou venda.</span><span>Desenvolvido por <b>Leandro Damasceno</b></span></div>
   </footer>
 </main>
 
@@ -235,12 +270,69 @@ footer a{color:inherit}
       return '<tr><td>'+dm(r.data)+'</td>'+cell(r.bez_nel_ba,2)+cell(r.bez_mes_ba,2)+cell(r.boi_ba_sul,2)+cell(r.bez_cepea_ms,2)+cell(r.cacau_ba_conv,2)+cell(r.cacau_ba_cert,2)+cell(r.cacau_ny,0)+'</tr>';
     }).join("") || '<tr><td colspan="8" class="msg">Sem cotações ainda.</td></tr>';
   }
+
+  var ICON = {
+    pod:'<svg class="hc-ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c6 3 9 8 9 13s-3 10-9 13C10 26 7 21 7 16S10 6 16 3z" fill="currentColor" opacity=".9"/><path d="M16 5v22M12 7c-1.5 6-1.5 12 0 18M20 7c1.5 6 1.5 12 0 18" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" fill="none"/></svg>',
+    calf:'<svg class="hc-ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 9c2 0 4 1 5 3h12c1-2 3-3 5-3-1 3-2 4-4 5v4c0 5-3 9-7 9s-7-4-7-9v-4c-2-1-3-2-4-5z" fill="currentColor"/><circle cx="13" cy="17" r="1.3" fill="#fff"/><circle cx="19" cy="17" r="1.3" fill="#fff"/><ellipse cx="16" cy="23" rx="3.2" ry="2" fill="#fff" opacity=".6"/></svg>',
+    bull:'<svg class="hc-ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 6c1 4 4 6 8 6h10c4 0 7-2 8-6 1 5-2 9-6 10v3c0 5-3 9-7 9s-7-4-7-9v-3C5 15 2 11 3 6z" fill="currentColor"/><circle cx="13" cy="19" r="1.3" fill="#fff"/><circle cx="19" cy="19" r="1.3" fill="#fff"/><ellipse cx="16" cy="25" rx="3.4" ry="2" fill="#fff" opacity=".6"/></svg>'
+  };
+  var HERO = [
+    {f:"cacau_ba_conv", t:"Cacau · Bahia", s:"BA · mercado físico · convencional", ic:"pod", u:function(){return "por arroba (15 kg)";},
+     strip:function(r){ var c=lastTwo("cacau_ba_cert")[0]; if(!c) return ""; var d=c.v-r.v;
+       return '<span>Certificado</span><span><b>R$ '+brl(c.v,2)+'</b><span class="d '+(d>=0?"pos":"neg")+'">'+(d>=0?"+":"−")+'R$ '+brl(Math.abs(d),2)+'</span></span>'; },
+     ft:"Cacau BA"},
+    {f:"bez_nel_ba", t:"Bezerro Nelore · Bahia", s:"BA · 12 meses · 240 kg", ic:"calf", u:function(v){return "por cabeça · ≈ R$ "+brl(v/8,2)+"/@";},
+     strip:function(r){ var m=lastTwo("bez_media_br")[0]; if(!m) return ""; var d=(r.v-m.v)/m.v*100;
+       return '<span>Média Brasil</span><span><b>R$ '+brl(m.v,2)+'</b><span class="d '+(d>=0?"pos":"neg")+'">BA '+(d>=0?"+":"−")+brl(Math.abs(d),1)+'%</span></span>'; },
+     ft:"Bezerro BA"},
+    {f:"boi_ba_sul", t:"Boi gordo · Sul da Bahia", s:"BA Sul · à vista", ic:"bull", u:function(){return "por arroba";},
+     strip:function(r){ var b=lastTwo("bez_nel_ba")[0]; if(!b) return "";
+       return '<span>Troca: 1 bezerro =</span><span><b>'+brl(b.v/r.v,2)+' @</b> <span class="d neu">de boi</span></span>'; },
+     ft:"Boi gordo"}
+  ];
+  var hRange = [30,30,30];
+  function dDiff(a,b){ return Math.round((new Date(a+"T12:00:00")-new Date(b+"T12:00:00"))/864e5); }
+  function spark(pts,acc){
+    var W=300,H=64,p=6;
+    if(pts.length<2) return '<svg viewBox="0 0 300 64" aria-hidden="true"><text x="150" y="36" text-anchor="middle" font-size="11" fill="var(--muted)">Histórico em formação</text></svg>';
+    var vs=pts.map(function(q){return q.v;}), lo=Math.min.apply(null,vs), hi=Math.max.apply(null,vs), sp=(hi-lo)||hi*0.01;
+    var x=function(i){return p+i/(pts.length-1)*(W-2*p);}, y=function(v){return p+(1-(v-lo)/sp)*(H-2*p);};
+    var d=pts.map(function(q,i){return (i?"L":"M")+x(i).toFixed(1)+","+y(q.v).toFixed(1);}).join("");
+    var e=pts[pts.length-1];
+    return '<svg viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true"><path d="'+d+'L'+x(pts.length-1)+','+H+'L'+x(0)+','+H+'Z" fill="'+acc+'" opacity=".1"/><path d="'+d+'" fill="none" stroke="'+acc+'" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="'+x(pts.length-1)+'" cy="'+y(e.v)+'" r="3.5" fill="'+acc+'"/></svg>';
+  }
+  function heroes(){
+    var cards=$("hero").children, accs=["var(--cocoa)","var(--pasture)","var(--ox)"];
+    HERO.forEach(function(h,k){
+      var lt=lastTwo(h.f), cur=lt[0], prev=lt[1], el=cards[k];
+      if(!cur){ el.innerHTML='<div class="msg">Sem cotação ainda.</div>'; return; }
+      var all=rows.filter(function(r){return r[h.f]!=null;}).map(function(r){return {d:r.data,v:r[h.f]};});
+      var win=all.filter(function(q){return dDiff(cur.d,q.d)<hRange[k];});
+      var vs=win.map(function(q){return q.v;}), mn=Math.min.apply(null,vs), mx=Math.max.apply(null,vs);
+      var first=win[0], per=(cur.v-first.v)/first.v*100;
+      var parts=brl(cur.v,2).split(","), latest=rows[rows.length-1].data;
+      var pl=""; if(prev){ var pc=(cur.v-prev.v)/prev.v*100, c=Math.abs(pc)<0.05?"flat":(pc>0?"up":"down");
+        pl='<span class="pill '+c+'" title="vs '+dm(prev.d)+'">'+(c==="flat"?"= ":(pc>0?"▲ ":"▼ "))+brl(Math.abs(pc),2)+'%</span>'; }
+      var since = dDiff(cur.d,first.d)+1 < hRange[k] ? " (desde "+dm(first.d)+")" : "";
+      el.innerHTML =
+        '<div class="hc-h">'+ICON[h.ic]+'<div><div class="hc-t">'+h.t+'</div><div class="hc-s">'+h.s+'</div></div></div>'+
+        '<div class="hc-p"><div class="hc-v">R$ '+parts[0]+'<small>,'+parts[1]+'</small></div>'+pl+'</div>'+
+        '<div class="hc-u">'+h.u(cur.v)+' · '+(cur.d===latest?dm(cur.d):'<span class="old">mantido de '+dm(cur.d)+'</span>')+'</div>'+
+        '<div class="hc-rg" role="group" aria-label="Período">'+[7,15,30].map(function(n){return '<button type="button" data-k="'+k+'" data-n="'+n+'" aria-pressed="'+(hRange[k]===n)+'">'+n+'d</button>';}).join("")+'</div>'+
+        spark(win,accs[k])+
+        '<div class="hc-mm"><span>Mín R$ '+brl(mn,2)+'</span><span>Máx R$ '+brl(mx,2)+'</span></div>'+
+        (h.strip(cur)?'<div class="hc-st">'+h.strip(cur)+'</div>':'')+
+        '<div class="hc-ft"><span>'+h.ft+' em '+hRange[k]+' dias'+since+'</span><b class="'+(Math.abs(per)<0.005?"neu":(per>0?"pos":"neg"))+'">'+(per>0?"+":"")+brl(per,2)+'%</b></div>';
+    });
+  }
+  $("hero").addEventListener("click",function(e){ var b=e.target.closest(".hc-rg button"); if(!b) return; hRange[+b.getAttribute("data-k")]=+b.getAttribute("data-n"); heroes(); });
+
   function render(){
     var last=rows[rows.length-1];
     var hora = "";
     if(upd){ var t=new Date(upd); if(!isNaN(t)) hora = t.toLocaleString("pt-BR",{timeZone:"America/Bahia",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).replace(",", " às"); }
     $("when").innerHTML = last ? 'Cotações de<b>'+dmy(last.data)+'</b>'+(hora?'<small style="display:block;opacity:.85">atualizado '+hora+'</small>':'') : 'Sem dados';
-    list($("l-gado"), ITEMS.gado); list($("l-cacau"), ITEMS.cacau);
+    heroes(); list($("l-gado"), ITEMS.gado); list($("l-cacau"), ITEMS.cacau);
     drawTabs(); drawChart(); calc(); hist();
   }
 
