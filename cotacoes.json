@@ -1,131 +1,131 @@
 {
- "atualizadoEm": "2026-10-08T12:35:00-03:00",
- "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga).",
- "cotacoes": [
-  {
-   "data": "2026-09-14",
-   "cacau_ba_conv": 319.71
-  },
-  {
-   "data": "2026-09-15",
-   "cacau_ba_conv": 307.25
-  },
-  {
-   "data": "2026-09-16",
-   "cacau_ba_conv": 314.23
-  },
-  {
-   "data": "2026-09-17",
-   "cacau_ba_conv": 287.05
-  },
-  {
-   "data": "2026-09-18",
-   "cacau_ba_conv": 265.71
-  },
-  {
-   "data": "2026-09-20",
-   "cacau_ba_conv": 265.82
-  },
-  {
-   "data": "2026-09-21",
-   "cacau_ba_conv": 262.28
-  },
-  {
-   "data": "2026-09-22",
-   "cacau_ba_conv": 270.31
-  },
-  {
-   "data": "2026-09-23",
-   "bez_cepea_ms": 3414.22,
-   "cacau_ba_conv": 281.75,
-   "cacau_ba_cert": 347
-  },
-  {
-   "data": "2026-09-24",
-   "bez_cepea_ms": 3421.35,
-   "cacau_ba_conv": 288.9,
-   "cacau_ba_cert": 358
-  },
-  {
-   "data": "2026-09-25",
-   "bez_cepea_ms": 3426.02,
-   "cacau_ba_conv": 289.33,
-   "cacau_ba_cert": 367
-  },
-  {
-   "data": "2026-09-27",
-   "cacau_ba_conv": 289.19
-  },
-  {
-   "data": "2026-09-28",
-   "bez_cepea_ms": 3437.62,
-   "cacau_ba_conv": 291.72,
-   "cacau_ba_cert": 373
-  },
-  {
-   "data": "2026-09-29",
-   "bez_cepea_ms": 3436.66,
-   "cacau_ba_conv": 270.85,
-   "cacau_ba_cert": 372
-  },
-  {
-   "data": "2026-09-30",
-   "bez_cepea_ms": 3446.14,
-   "cacau_ba_conv": 268.58,
-   "cacau_ba_cert": 351
-  },
-  {
-   "data": "2026-10-01",
-   "bez_cepea_ms": 3453.55,
-   "cacau_ba_conv": 279.26,
-   "cacau_ba_cert": 334
-  },
-  {
-   "data": "2026-10-02",
-   "bez_cepea_ms": 3456.83,
-   "cacau_ba_conv": 291.86,
-   "cacau_ba_cert": 369
-  },
-  {
-   "data": "2026-10-04",
-   "cacau_ba_conv": 291.84
-  },
-  {
-   "data": "2026-10-05",
-   "bez_cepea_ms": 3461.27,
-   "cacau_ba_conv": 297.16,
-   "cacau_ba_cert": 372,
-   "boi_ba_sul": 346
-  },
-  {
-   "data": "2026-10-06",
-   "bez_cepea_ms": 3467.5,
-   "cacau_ba_conv": 289.44,
-   "cacau_ba_cert": 376,
-   "cacau_ny": 5700,
-   "bez_nel_ba": 3545,
-   "bez_mes_ba": 2987.45,
-   "desm_nel_ba": 3087.5,
-   "bez_media_br": 3668.78,
-   "boi_ba_sul": 350
-  },
-  {
-   "data": "2026-10-07",
-   "bez_nel_ba": 3545,
-   "bez_mes_ba": 2987.45,
-   "desm_nel_ba": 3087.5,
-   "bez_media_br": 3668.78,
-   "bez_cepea_ms": 3470.58,
-   "cacau_ba_conv": 274.08,
-   "cacau_ba_cert": 371,
-   "cacau_ny": 5582
-  },
-  {
-   "data": "2026-10-08",
-   "cacau_ba_conv": 271.32,
-   "cacau_ba_cert": 352.67,
-   "cacau_ny": 5508,
-   "cacau_hora": "11:00"
-  }
- ]
+  "atualizadoEm": "2026-10-08T15:05:00-03:00",
+  "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga).",
+  "cotacoes": [
+    {
+      "data": "2026-09-14",
+      "cacau_ba_conv": 319.71
+    },
+    {
+      "data": "2026-09-15",
+      "cacau_ba_conv": 307.25
+    },
+    {
+      "data": "2026-09-16",
+      "cacau_ba_conv": 314.23
+    },
+    {
+      "data": "2026-09-17",
+      "cacau_ba_conv": 287.05
+    },
+    {
+      "data": "2026-09-18",
+      "cacau_ba_conv": 265.71
+    },
+    {
+      "data": "2026-09-20",
+      "cacau_ba_conv": 265.82
+    },
+    {
+      "data": "2026-09-21",
+      "cacau_ba_conv": 262.28
+    },
+    {
+      "data": "2026-09-22",
+      "cacau_ba_conv": 270.31
+    },
+    {
+      "data": "2026-09-23",
+      "bez_cepea_ms": 3414.22,
+      "cacau_ba_conv": 281.75,
+      "cacau_ba_cert": 347
+    },
+    {
+      "data": "2026-09-24",
+      "bez_cepea_ms": 3421.35,
+      "cacau_ba_conv": 288.9,
+      "cacau_ba_cert": 358
+    },
+    {
+      "data": "2026-09-25",
+      "bez_cepea_ms": 3426.02,
+      "cacau_ba_conv": 289.33,
+      "cacau_ba_cert": 367
+    },
+    {
+      "data": "2026-09-27",
+      "cacau_ba_conv": 289.19
+    },
+    {
+      "data": "2026-09-28",
+      "bez_cepea_ms": 3437.62,
+      "cacau_ba_conv": 291.72,
+      "cacau_ba_cert": 373
+    },
+    {
+      "data": "2026-09-29",
+      "bez_cepea_ms": 3436.66,
+      "cacau_ba_conv": 270.85,
+      "cacau_ba_cert": 372
+    },
+    {
+      "data": "2026-09-30",
+      "bez_cepea_ms": 3446.14,
+      "cacau_ba_conv": 268.58,
+      "cacau_ba_cert": 351
+    },
+    {
+      "data": "2026-10-01",
+      "bez_cepea_ms": 3453.55,
+      "cacau_ba_conv": 279.26,
+      "cacau_ba_cert": 334
+    },
+    {
+      "data": "2026-10-02",
+      "bez_cepea_ms": 3456.83,
+      "cacau_ba_conv": 291.86,
+      "cacau_ba_cert": 369
+    },
+    {
+      "data": "2026-10-04",
+      "cacau_ba_conv": 291.84
+    },
+    {
+      "data": "2026-10-05",
+      "bez_cepea_ms": 3461.27,
+      "cacau_ba_conv": 297.16,
+      "cacau_ba_cert": 372,
+      "boi_ba_sul": 346
+    },
+    {
+      "data": "2026-10-06",
+      "bez_cepea_ms": 3467.5,
+      "cacau_ba_conv": 289.44,
+      "cacau_ba_cert": 376,
+      "cacau_ny": 5700,
+      "bez_nel_ba": 3545,
+      "bez_mes_ba": 2987.45,
+      "desm_nel_ba": 3087.5,
+      "bez_media_br": 3668.78,
+      "boi_ba_sul": 350
+    },
+    {
+      "data": "2026-10-07",
+      "bez_nel_ba": 3545,
+      "bez_mes_ba": 2987.45,
+      "desm_nel_ba": 3087.5,
+      "bez_media_br": 3668.78,
+      "bez_cepea_ms": 3470.58,
+      "cacau_ba_conv": 274.08,
+      "cacau_ba_cert": 371,
+      "cacau_ny": 5582
+    },
+    {
+      "data": "2026-10-08",
+      "cacau_ba_conv": 279.85,
+      "cacau_ba_cert": 361.07,
+      "cacau_ny": 5508,
+      "cacau_hora": "15:01"
+    }
+  ]
 }
