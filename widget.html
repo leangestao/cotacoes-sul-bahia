@@ -1,0 +1,77 @@
+<!-- Cotações Gado e Cacau · Sul da Bahia — cole este bloco inteiro no widget "HTML" do Elementor -->
+<div id="ccg-cotacoes" class="ccg">
+  <div class="ccg-head">
+    <div>
+      <h3 class="ccg-title">Cotações do campo · Sul da Bahia</h3>
+      <p class="ccg-sub">Gado e cacau para Ibirapitanga e região · atualizado em dias úteis</p>
+    </div>
+    <span class="ccg-stamp" id="ccg-stamp">Carregando…</span>
+  </div>
+  <div class="ccg-group">
+    <h4 class="ccg-gt ccg-gado">Gado</h4>
+    <div class="ccg-cards" id="ccg-gado"></div>
+  </div>
+  <div class="ccg-group">
+    <h4 class="ccg-gt ccg-cacau">Cacau</h4>
+    <div class="ccg-cards" id="ccg-cacau"></div>
+  </div>
+  <p class="ccg-foot">Fontes: Scot Consultoria e Cepea/Esalq (gado); Mercado do Cacau e Bolsa de Nova York (cacau). Valores de referência estadual e regional; o preço de cada negócio varia com peso, padrão e frete. Bezerro em R$/@: preço por cabeça dividido pelas arrobas de referência.</p>
+</div>
+<style>
+#ccg-cotacoes{--ccg-bg:#ffffff;--ccg-line:#e2e5dc;--ccg-fg:#1f241d;--ccg-muted:#5f6759;--ccg-pasture:#3e6b35;--ccg-cocoa:#6b3a22;--ccg-up:#2f7a3a;--ccg-down:#b23a2a;--ccg-flat:#7a7f74;
+  background:var(--ccg-bg);color:var(--ccg-fg);border:1px solid var(--ccg-line);border-radius:10px;padding:18px;font-family:inherit;line-height:1.45;max-width:100%;box-sizing:border-box}
+#ccg-cotacoes *{box-sizing:border-box}
+#ccg-cotacoes .ccg-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px;margin-bottom:14px}
+#ccg-cotacoes .ccg-title{margin:0;font-size:1.25rem;line-height:1.2;color:var(--ccg-fg)}
+#ccg-cotacoes .ccg-sub{margin:2px 0 0;font-size:.85rem;color:var(--ccg-muted)}
+#ccg-cotacoes .ccg-stamp{font-size:.8rem;color:var(--ccg-muted);font-variant-numeric:tabular-nums}
+#ccg-cotacoes .ccg-group{margin-bottom:14px}
+#ccg-cotacoes .ccg-gt{margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;border-bottom:2px solid currentColor;padding-bottom:3px}
+#ccg-cotacoes .ccg-gado{color:var(--ccg-pasture)} #ccg-cotacoes .ccg-cacau{color:var(--ccg-cocoa)}
+#ccg-cotacoes .ccg-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+#ccg-cotacoes .ccg-card{border:1px solid var(--ccg-line);border-radius:8px;padding:10px 12px;display:grid;gap:2px;min-width:0}
+#ccg-cotacoes .ccg-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ccg-muted);font-weight:600}
+#ccg-cotacoes .ccg-val{font-size:1.35rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+#ccg-cotacoes .ccg-val small{font-size:.75rem;font-weight:500;color:var(--ccg-muted)}
+#ccg-cotacoes .ccg-meta{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.75rem;color:var(--ccg-muted);font-variant-numeric:tabular-nums}
+#ccg-cotacoes .ccg-pill{padding:0 6px;border-radius:999px;border:1px solid currentColor}
+#ccg-cotacoes .ccg-up{color:var(--ccg-up)} #ccg-cotacoes .ccg-down{color:var(--ccg-down)} #ccg-cotacoes .ccg-flat{color:var(--ccg-flat)}
+#ccg-cotacoes .ccg-foot{margin:4px 0 0;font-size:.72rem;color:var(--ccg-muted)}
+</style>
+<script>
+(function(){
+  var URL_DADOS = "https://raw.githubusercontent.com/leangestao/cotacoes-sul-bahia/main/cotacoes.json";
+  var box = document.getElementById("ccg-cotacoes"); if(!box) return;
+  function brl(v,d){ return v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  function dm(iso){ var p=iso.split("-"); return p[2]+"/"+p[1]; }
+  function dmy(iso){ var p=iso.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
+  function card(rows, o){
+    var cur=null, prev=null, i;
+    for(i=rows.length-1;i>=0;i--){ if(rows[i][o.f]!=null){ if(!cur) cur={v:rows[i][o.f],d:rows[i].data}; else { prev={v:rows[i][o.f],d:rows[i].data}; break; } } }
+    if(!cur) return "";
+    var pre = o.usd ? "US$ " : "R$ ";
+    var html = '<div class="ccg-card"><span class="ccg-lbl">'+o.label+'</span><span class="ccg-val">'+pre+brl(cur.v,o.usd?0:2)+' <small>'+o.unit+'</small></span><span class="ccg-meta">';
+    if(o.arroba) html += '<span>≈ R$ '+brl(cur.v/o.arroba,2)+'/@</span>';
+    if(prev){ var pct=(cur.v-prev.v)/prev.v*100, c=Math.abs(pct)<0.05?"ccg-flat":(pct>0?"ccg-up":"ccg-down");
+      html += '<span class="ccg-pill '+c+'" title="vs '+dm(prev.d)+'">'+(pct>0?"+":"")+brl(pct,1)+'%</span>'; }
+    html += '<span>'+(cur.d===rows[rows.length-1].data?dm(cur.d):'mantido de '+dm(cur.d))+'</span></span></div>';
+    return html;
+  }
+  fetch(URL_DADOS+"?t="+Date.now(),{cache:"no-store"}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(j){
+    var rows=(j.cotacoes||[]).slice().sort(function(a,b){return a.data<b.data?-1:1;});
+    if(!rows.length) throw 0;
+    document.getElementById("ccg-stamp").textContent="Cotações de "+dmy(rows[rows.length-1].data);
+    document.getElementById("ccg-gado").innerHTML=[
+      card(rows,{label:"Bezerro Nelore 12 m · BA",f:"bez_nel_ba",unit:"/cab",arroba:8}),
+      card(rows,{label:"Bezerro mestiço 12 m · BA",f:"bez_mes_ba",unit:"/cab",arroba:7}),
+      card(rows,{label:"Boi gordo · Sul da Bahia",f:"boi_ba_sul",unit:"/@"}),
+      card(rows,{label:"Bezerro · Cepea MS (nacional)",f:"bez_cepea_ms",unit:"/cab"})
+    ].join("");
+    document.getElementById("ccg-cacau").innerHTML=[
+      card(rows,{label:"Cacau convencional · BA",f:"cacau_ba_conv",unit:"/@"}),
+      card(rows,{label:"Cacau certificado · BA",f:"cacau_ba_cert",unit:"/@"}),
+      card(rows,{label:"Bolsa de Nova York",f:"cacau_ny",unit:"/t",usd:true})
+    ].join("");
+  }).catch(function(){ document.getElementById("ccg-stamp").textContent="Cotações indisponíveis no momento."; });
+})();
+</script>
