@@ -346,9 +346,9 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
      strip:function(r){ var c=lastTwo("cacau_ba_cert")[0]; if(!c) return ""; var d=c.v-r.v;
        return '<span>Certificado</span><span><b>R$ '+brl(c.v,2)+'</b><span class="d '+(d>=0?"pos":"neg")+'">'+(d>=0?"+":"−")+'R$ '+brl(Math.abs(d),2)+'</span></span>'; },
      ft:"Cacau"},
-    {f:"bez_nel_ba", t:"Bezerro Nelore · Bahia", s:"BA · 12 meses · 240 kg", ic:"calf", u:function(v){return "por cabeça · ≈ R$ "+brl(v/8,2)+"/@";},
+    {f:"bez_nel_ba", dv:8, t:"Bezerro Nelore · Bahia", s:"BA · 12 meses · 240 kg (8@)", ic:"calf", u:function(v){return "por arroba · R$ "+brl(v,2)+"/cabeça";},
      strip:function(r){ var m=lastTwo("bez_media_br")[0]; if(!m) return ""; var d=(r.v-m.v)/m.v*100;
-       return '<span>Média Brasil</span><span><b>R$ '+brl(m.v,2)+'</b><span class="d '+(d>=0?"pos":"neg")+'">BA '+(d>=0?"+":"−")+brl(Math.abs(d),1)+'%</span></span>'; },
+       return '<span>Média Brasil</span><span><b>R$ '+brl(m.v/8,2)+'/@</b><span class="d '+(d>=0?"pos":"neg")+'">BA '+(d>=0?"+":"−")+brl(Math.abs(d),1)+'%</span></span>'; },
      ft:"Bezerro BA"},
     {f:"boi_ba_sul", t:"Boi gordo · Sul da Bahia", s:"BA Sul · à vista", ic:"bull", u:function(){return "por arroba";},
      strip:function(r){ var b=lastTwo("bez_nel_ba")[0]; if(!b) return "";
@@ -370,9 +370,10 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
   function heroes(){
     var cards=$("hero").children, accs=["var(--cocoa)","var(--pasture)","var(--ox)"];
     HERO.forEach(function(h,k){
-      var lt=lastTwo(h.f), cur=lt[0], prev=lt[1], el=cards[k];
+      var dv=h.dv||1, lt=lastTwo(h.f), raw=lt[0], el=cards[k];
+      var cur=raw&&{v:raw.v/dv,d:raw.d}, prev=lt[1]&&{v:lt[1].v/dv,d:lt[1].d};
       if(!cur){ el.innerHTML='<div class="msg">Sem cotação ainda.</div>'; return; }
-      var all=rows.filter(function(r){return r[h.f]!=null;}).map(function(r){return {d:r.data,v:r[h.f]};});
+      var all=rows.filter(function(r){return r[h.f]!=null;}).map(function(r){return {d:r.data,v:r[h.f]/dv};});
       var win=all.filter(function(q){return dDiff(cur.d,q.d)<hRange[k];});
       var vs=win.map(function(q){return q.v;}), mn=Math.min.apply(null,vs), mx=Math.max.apply(null,vs);
       var first=win[0], per=(cur.v-first.v)/first.v*100;
@@ -383,11 +384,11 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
       el.innerHTML =
         '<div class="hc-h">'+ICON[h.ic]+'<div><div class="hc-t">'+h.t+'</div><div class="hc-s">'+h.s+'</div></div></div>'+
         '<div class="hc-p"><div class="hc-v">R$ '+parts[0]+'<small>,'+parts[1]+'</small></div>'+pl+'</div>'+
-        '<div class="hc-u">'+h.u(cur.v)+' · '+(cur.d===latest?dm(cur.d):'<span class="old">mantido de '+dm(cur.d)+'</span>')+hhora(h.f,cur.d)+'</div>'+
+        '<div class="hc-u">'+h.u(raw.v)+' · '+(cur.d===latest?dm(cur.d):'<span class="old">mantido de '+dm(cur.d)+'</span>')+hhora(h.f,cur.d)+'</div>'+
         '<div class="hc-rg" role="group" aria-label="Período">'+[7,15,30].map(function(n){return '<button type="button" data-k="'+k+'" data-n="'+n+'" aria-pressed="'+(hRange[k]===n)+'">'+n+'d</button>';}).join("")+'</div>'+
         spark(win,accs[k])+
         '<div class="hc-mm"><span>Mín R$ '+brl(mn,2)+'</span><span>Máx R$ '+brl(mx,2)+'</span></div>'+
-        (h.strip(cur)?'<div class="hc-st">'+h.strip(cur)+'</div>':'')+
+        (h.strip(raw)?'<div class="hc-st">'+h.strip(raw)+'</div>':'')+
         '<div class="hc-ft"><span>'+h.ft+' em '+hRange[k]+' dias'+since+'</span><b class="'+(Math.abs(per)<0.005?"neu":(per>0?"pos":"neg"))+'">'+(per>0?"+":"")+brl(per,2)+'%</b></div>';
     });
   }
