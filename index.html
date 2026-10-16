@@ -54,6 +54,10 @@ h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px
 .flat{color:var(--flat);background:color-mix(in srgb,var(--flat) 12%,transparent)}
 .old{font-style:italic}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.cpick{position:relative;display:inline-flex;align-items:center;gap:6px;margin:0 0 8px;padding:7px 12px 7px 10px;min-height:38px;border-radius:999px;border:1px solid var(--cocoa);color:var(--cocoa);background:var(--surface);font-weight:650;font-size:.88rem;cursor:pointer}
+.cpick svg{width:16px;height:16px;flex:0 0 auto}.cpick .cv{width:14px;height:14px;opacity:.8}
+.cpick select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;border:0}
+.cpick:focus-within{outline:2px solid var(--pasture);outline-offset:2px}
 .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin:-2px -2px 8px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;font:inherit;font-size:.82rem;font-weight:600;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);min-height:38px;cursor:pointer}
@@ -189,9 +193,8 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
 
   <section class="c" aria-labelledby="h-c">
     <h2 id="h-c">Cacau</h2>
-    <div class="tabs" role="tablist" id="ctabs" aria-label="Cacau"><button type="button" class="tab" role="tab" aria-selected="true" data-v="ibi">Ibirapitanga</button><button type="button" class="tab" role="tab" aria-selected="false" data-v="cid">Cidades do Sul da Bahia</button></div>
+    <label class="cpick" id="cpick" style="display:none"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg><span id="cpick-t">Ibirapitanga</span><svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><select id="csel" aria-label="Escolher município para a cotação do cacau"></select></label>
     <div class="list" id="l-cacau"><div class="msg">Buscando cotações…</div></div>
-    <div id="p-cid" style="display:none"><div class="list" id="l-cid"><div class="msg">Buscando cotações…</div></div><div class="chnote" id="cidnote"></div></div>
   </section>
 
   <section aria-labelledby="h-ch">
@@ -331,33 +334,42 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
       html+='<div class="cmp">Referência Bahia: R$ '+brl(refkg,2)+'/kg ('+dm(ref.d)+'). Seu lote está <span class="pill '+c+'">'+(d>0?"+":"")+brl(d,1)+'%</span> '+(Math.abs(d)<1?"em linha com":(d>0?"acima da":"abaixo da"))+' referência.</div>'; }
     r.innerHTML=html;
   }
-  function cidades(){
-    var el=$("l-cid"), note=$("cidnote");
-    if(!cid||!cid.cidades||!cid.cidades.length){ el.innerHTML='<div class="msg">Lista de cidades ainda não disponível.</div>'; note.textContent=""; return; }
-    var ba=cid.bahia, ibi=null;
-    var cs=cid.cidades.filter(function(c){return c&&c.nome&&c.conv!=null;});
-    cs.forEach(function(c){ if(c.nome==="Ibirapitanga") ibi=c; });
-    var ref=ba!=null?ba:(ibi?ibi.conv:null);
-    var eq=function(c){ return ref!=null&&Math.abs(c.conv-ref)<0.015; };
-    cs.sort(function(a,b){
-      var ka=a.nome==="Ibirapitanga"?0:(eq(a)?1:2), kb=b.nome==="Ibirapitanga"?0:(eq(b)?1:2);
-      return ka!==kb?ka-kb:a.nome.localeCompare(b.nome,"pt-BR");
-    });
-    var vp=function(v){ if(v==null) return ""; var c=Math.abs(v)<0.05?"flat":(v>0?"up":"down");
-      return '<span class="pill '+c+'">'+(c==="flat"?"=":(v>0?"▲":"▼"))+' '+brl(Math.abs(v),2)+'%</span>'; };
-    var when=(cid.data?dm(cid.data):"")+(cid.hora?" às "+cid.hora:"");
-    var html="";
-    if(ba!=null) html+='<div class="row"><span class="nm">Bahia · referência estadual</span><span class="sb">Convencional'+(cid.bahia_cert!=null?' · certificado R$ '+brl(cid.bahia_cert,2):'')+(when?' · '+when:'')+'</span><span class="vl"><b>R$ '+brl(ba,2)+'</b><span>/@</span> '+vp(cid.bahia_var)+'</span></div>';
-    html+=cs.map(function(c){
-      var sub = c.nome==="Ibirapitanga" ? "Nossa referência" : (eq(c) ? "Mesmo preço da Bahia" : '<span class="old">Preço próprio da praça</span>');
-      return '<div class="row"><span class="nm">'+(c.nome==="Ibirapitanga"?'<b>'+c.nome+'</b>':c.nome)+'</span><span class="sb">'+sub+'</span><span class="vl"><b>R$ '+brl(c.conv,2)+'</b><span>/@</span> '+vp(c["var"])+'</span></div>';
-    }).join("");
-    el.innerHTML=html;
-    note.textContent="Cacau convencional, R$ por arroba de 15 kg"+(when?", atualizado em "+when:"")+". Variação em relação ao dia anterior. Fonte: Preço do Cacau.";
+  var city="Ibirapitanga";
+  function isEq(c){ return cid&&cid.bahia!=null&&Math.abs(c.conv-cid.bahia)<0.015; }
+  function cityList(){ return (cid&&cid.cidades||[]).filter(function(c){return c&&c.nome&&c.conv!=null;}); }
+  function cpicker(){
+    var cs=cityList(), sel=$("csel");
+    if(cs.length<2){ $("cpick").style.display="none"; return; }
+    var by=function(a,b){return a.nome.localeCompare(b.nome,"pt-BR");};
+    var main=lastTwo("cacau_ba_conv")[0];
+    var o=function(c){ var v=(c.nome==="Ibirapitanga"&&main)?main.v:c.conv; return '<option value="'+c.nome+'"'+(c.nome===city?' selected':'')+'>'+c.nome+' — R$ '+brl(v,2)+'</option>'; };
+    var ibi=cs.filter(function(c){return c.nome==="Ibirapitanga";});
+    var eq=cs.filter(function(c){return c.nome!=="Ibirapitanga"&&isEq(c);}).sort(by);
+    var own=cs.filter(function(c){return c.nome!=="Ibirapitanga"&&!isEq(c);}).sort(by);
+    sel.innerHTML=(ibi.length?ibi.map(o).join(""):'<option value="Ibirapitanga" selected>Ibirapitanga</option>')+
+      (eq.length?'<optgroup label="Mesmo preço da Bahia">'+eq.map(o).join("")+'</optgroup>':'')+
+      (own.length?'<optgroup label="Preço próprio da praça">'+own.map(o).join("")+'</optgroup>':'');
+    $("cpick-t").textContent=city; $("cpick").style.display="";
   }
-  $("ctabs").addEventListener("click",function(e){ var b=e.target.closest(".tab"); if(!b) return; var v=b.getAttribute("data-v");
-    Array.prototype.forEach.call($("ctabs").children,function(x){ x.setAttribute("aria-selected", String(x===b)); });
-    $("l-cacau").style.display = v==="ibi" ? "" : "none"; $("p-cid").style.display = v==="cid" ? "" : "none"; });
+  function cacau(){
+    var el=$("l-cacau");
+    var c=null; cityList().forEach(function(x){ if(x.nome===city) c=x; });
+    if(city==="Ibirapitanga"||!c){ list(el, ITEMS.cacau); return; }
+    var vp=function(v){ if(v==null) return ""; var k=Math.abs(v)<0.05?"flat":(v>0?"up":"down");
+      return '<span class="pill '+k+'" title="vs dia anterior">'+(k==="flat"?"=":(v>0?"▲":"▼"))+' '+brl(Math.abs(v),1)+'%</span>'; };
+    var when=(cid.data?dm(cid.data):"")+(cid.hora?" às "+cid.hora:"");
+    var ibi=null; cityList().forEach(function(x){ if(x.nome==="Ibirapitanga") ibi=x; });
+    var cmp="";
+    if(isEq(c)) cmp="mesmo preço da Bahia";
+    else if(ibi){ var d=c.conv-ibi.conv; cmp=Math.abs(d)<0.015?"igual a Ibirapitanga":"R$ "+brl(Math.abs(d),2)+(d>0?" acima":" abaixo")+" de Ibirapitanga"; }
+    var html='<div class="row"><span class="nm">Cacau convencional</span><span class="sb">'+c.nome+' · '+cmp+(when?' · '+when:'')+'</span>'+
+      '<span class="vl"><b>R$ '+brl(c.conv,2)+'</b><span>/@</span> '+vp(c["var"])+'</span></div>';
+    if(cid.bahia_cert!=null) html+='<div class="row"><span class="nm">Cacau certificado</span><span class="sb">Bahia · referência estadual'+(when?' · '+when:'')+'</span>'+
+      '<span class="vl"><b>R$ '+brl(cid.bahia_cert,2)+'</b><span>/@</span> '+vp(cid.bahia_var)+'</span></div>';
+    var tmp=document.createElement("div"); list(tmp,[ITEMS.cacau[2]]); html+=tmp.innerHTML;
+    el.innerHTML=html;
+  }
+  $("csel").addEventListener("change",function(){ city=this.value; $("cpick-t").textContent=city; cacau(); });
 
   function hist(){
     var cell=function(v,d){ return v==null?'<td class="na">–</td>':'<td>'+brl(v,d)+'</td>'; };
@@ -429,7 +441,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
     var hora = "";
     if(upd){ var t=new Date(upd); if(!isNaN(t)) hora = t.toLocaleString("pt-BR",{timeZone:"America/Bahia",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).replace(",", " às"); }
     $("when").innerHTML = last ? 'Cotações de<b>'+dmy(last.data)+'</b>'+(hora?'<small style="display:block;opacity:.85">atualizado '+hora+'</small>':'') : 'Sem dados';
-    heroes(); list($("l-gado"), ITEMS.gado); list($("l-cacau"), ITEMS.cacau); cidades();
+    heroes(); list($("l-gado"), ITEMS.gado); cpicker(); cacau();
     drawTabs(); drawChart(); calc(); hist();
   }
 
