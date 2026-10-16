@@ -189,7 +189,9 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
 
   <section class="c" aria-labelledby="h-c">
     <h2 id="h-c">Cacau</h2>
+    <div class="tabs" role="tablist" id="ctabs" aria-label="Cacau"><button type="button" class="tab" role="tab" aria-selected="true" data-v="ibi">Ibirapitanga</button><button type="button" class="tab" role="tab" aria-selected="false" data-v="cid">Cidades do Sul da Bahia</button></div>
     <div class="list" id="l-cacau"><div class="msg">Buscando cotações…</div></div>
+    <div id="p-cid" style="display:none"><div class="list" id="l-cid"><div class="msg">Buscando cotações…</div></div><div class="chnote" id="cidnote"></div></div>
   </section>
 
   <section aria-labelledby="h-ch">
@@ -222,7 +224,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
   </section>
 
   <footer>
-    <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>; cacau (Ibirapitanga e Bolsa de Nova York) via <a href="https://precodocacau.com.br/cotacao/cacau-ibirapitanga/" target="_blank" rel="noopener">Preço do Cacau</a>. Gado atualizado todo dia às 6h52; cacau de hora em hora das 8h às 19h nos dias úteis. Previsão do tempo: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, atualizada a cada visita.</span>
+    <span><b>Fontes:</b> Scot Consultoria e Cepea/Esalq (gado), via <a href="https://www.noticiasagricolas.com.br/cotacoes/" target="_blank" rel="noopener">Notícias Agrícolas</a>; cacau (Ibirapitanga e Bolsa de Nova York) via <a href="https://precodocacau.com.br/cotacao/cacau-ibirapitanga/" target="_blank" rel="noopener">Preço do Cacau</a>; cidades do Sul da Bahia via <a href="https://precodocacau.com.br/cotacao/" target="_blank" rel="noopener">Preço do Cacau · por região</a>. Gado atualizado todo dia às 6h52; cacau de hora em hora das 8h às 19h nos dias úteis. Previsão do tempo: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, atualizada a cada visita.</span>
     <span>Valores de referência da Bahia e do Sul da Bahia; o preço de cada negócio varia com peso, padrão e frete. Bezerro em R$/@: preço por cabeça dividido pelas arrobas de referência (1@ = 30 kg vivos). Cacau: R$ por arroba de 15 kg. “Mantido de” = a fonte não publicou desde essa data.</span>
     <div class="disc"><span>Portal independente de acompanhamento do mercado de cacau e gado no Brasil. Os preços são informativos e não constituem recomendação de compra ou venda.</span><span>Desenvolvido por <b>Leandro Damasceno</b></span></div>
   </footer>
@@ -236,7 +238,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
 <script>
 (function(){
   var DATA_URL = "https://raw.githubusercontent.com/leangestao/cotacoes-sul-bahia/main/cotacoes.json";
-  var rows = [], upd = null;
+  var rows = [], upd = null, cid = null;
   var $ = function(id){ return document.getElementById(id); };
   function brl(v,d){ return v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d}); }
   function dm(s){ var p=s.split("-"); return p[2]+"/"+p[1]; }
@@ -329,6 +331,34 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
       html+='<div class="cmp">Referência Bahia: R$ '+brl(refkg,2)+'/kg ('+dm(ref.d)+'). Seu lote está <span class="pill '+c+'">'+(d>0?"+":"")+brl(d,1)+'%</span> '+(Math.abs(d)<1?"em linha com":(d>0?"acima da":"abaixo da"))+' referência.</div>'; }
     r.innerHTML=html;
   }
+  function cidades(){
+    var el=$("l-cid"), note=$("cidnote");
+    if(!cid||!cid.cidades||!cid.cidades.length){ el.innerHTML='<div class="msg">Lista de cidades ainda não disponível.</div>'; note.textContent=""; return; }
+    var ba=cid.bahia, ibi=null;
+    var cs=cid.cidades.filter(function(c){return c&&c.nome&&c.conv!=null;});
+    cs.forEach(function(c){ if(c.nome==="Ibirapitanga") ibi=c; });
+    var ref=ba!=null?ba:(ibi?ibi.conv:null);
+    var eq=function(c){ return ref!=null&&Math.abs(c.conv-ref)<0.015; };
+    cs.sort(function(a,b){
+      var ka=a.nome==="Ibirapitanga"?0:(eq(a)?1:2), kb=b.nome==="Ibirapitanga"?0:(eq(b)?1:2);
+      return ka!==kb?ka-kb:a.nome.localeCompare(b.nome,"pt-BR");
+    });
+    var vp=function(v){ if(v==null) return ""; var c=Math.abs(v)<0.05?"flat":(v>0?"up":"down");
+      return '<span class="pill '+c+'">'+(c==="flat"?"=":(v>0?"▲":"▼"))+' '+brl(Math.abs(v),2)+'%</span>'; };
+    var when=(cid.data?dm(cid.data):"")+(cid.hora?" às "+cid.hora:"");
+    var html="";
+    if(ba!=null) html+='<div class="row"><span class="nm">Bahia · referência estadual</span><span class="sb">Convencional'+(cid.bahia_cert!=null?' · certificado R$ '+brl(cid.bahia_cert,2):'')+(when?' · '+when:'')+'</span><span class="vl"><b>R$ '+brl(ba,2)+'</b><span>/@</span> '+vp(cid.bahia_var)+'</span></div>';
+    html+=cs.map(function(c){
+      var sub = c.nome==="Ibirapitanga" ? "Nossa referência" : (eq(c) ? "Mesmo preço da Bahia" : '<span class="old">Preço próprio da praça</span>');
+      return '<div class="row"><span class="nm">'+(c.nome==="Ibirapitanga"?'<b>'+c.nome+'</b>':c.nome)+'</span><span class="sb">'+sub+'</span><span class="vl"><b>R$ '+brl(c.conv,2)+'</b><span>/@</span> '+vp(c["var"])+'</span></div>';
+    }).join("");
+    el.innerHTML=html;
+    note.textContent="Cacau convencional, R$ por arroba de 15 kg"+(when?", atualizado em "+when:"")+". Variação em relação ao dia anterior. Fonte: Preço do Cacau.";
+  }
+  $("ctabs").addEventListener("click",function(e){ var b=e.target.closest(".tab"); if(!b) return; var v=b.getAttribute("data-v");
+    Array.prototype.forEach.call($("ctabs").children,function(x){ x.setAttribute("aria-selected", String(x===b)); });
+    $("l-cacau").style.display = v==="ibi" ? "" : "none"; $("p-cid").style.display = v==="cid" ? "" : "none"; });
+
   function hist(){
     var cell=function(v,d){ return v==null?'<td class="na">–</td>':'<td>'+brl(v,d)+'</td>'; };
     $("hist").innerHTML = rows.slice().reverse().map(function(r){
@@ -399,7 +429,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
     var hora = "";
     if(upd){ var t=new Date(upd); if(!isNaN(t)) hora = t.toLocaleString("pt-BR",{timeZone:"America/Bahia",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).replace(",", " às"); }
     $("when").innerHTML = last ? 'Cotações de<b>'+dmy(last.data)+'</b>'+(hora?'<small style="display:block;opacity:.85">atualizado '+hora+'</small>':'') : 'Sem dados';
-    heroes(); list($("l-gado"), ITEMS.gado); list($("l-cacau"), ITEMS.cacau);
+    heroes(); list($("l-gado"), ITEMS.gado); list($("l-cacau"), ITEMS.cacau); cidades();
     drawTabs(); drawChart(); calc(); hist();
   }
 
@@ -410,7 +440,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
   function load(){
     fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
     .then(function(j){
-      upd=j.atualizadoEm||null;
+      upd=j.atualizadoEm||null; cid=j.cacau_cidades||null;
       rows=(j.cotacoes||[]).filter(function(r){return r&&r.data;}).sort(function(a,b){return a.data<b.data?-1:1;});
       render();
     }).catch(function(){

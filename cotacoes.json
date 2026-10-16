@@ -1,6 +1,101 @@
 {
-  "atualizadoEm": "2026-10-16T15:10:10-03:00",
-  "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga).",
+  "atualizadoEm": "2026-10-16T15:53:56-03:00",
+  "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
+  "cacau_cidades": {
+    "data": "2026-10-16",
+    "hora": "07:00",
+    "bahia": 282.02,
+    "bahia_cert": 367.29,
+    "bahia_var": 0.46,
+    "fonte": "https://precodocacau.com.br/cotacao/",
+    "cidades": [
+      {
+        "nome": "Ilhéus",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Wenceslau Guimarães",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Ibirapitanga",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Itabuna",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Camacan",
+        "conv": 230.0,
+        "var": 13.3
+      },
+      {
+        "nome": "Gandu",
+        "conv": 300.0,
+        "var": 0.0
+      },
+      {
+        "nome": "Mutuípe",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Camamu",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Itamaraju",
+        "conv": 290.0,
+        "var": 3.57
+      },
+      {
+        "nome": "Una",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Uruçuca",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Canavieiras",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Eunápolis",
+        "conv": 265.0,
+        "var": -3.64
+      },
+      {
+        "nome": "Ipiaú",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Ituberá",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Ubatã",
+        "conv": 282.02,
+        "var": 0.46
+      },
+      {
+        "nome": "Valença",
+        "conv": 282.02,
+        "var": 0.46
+      }
+    ]
+  },
   "cotacoes": [
     {
       "data": "2026-09-14",
