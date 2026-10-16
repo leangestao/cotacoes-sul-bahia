@@ -90,6 +90,11 @@ main>section:not(.hero):not(.wx),main>footer{width:100%;max-width:760px;justify-
 .hc-ic{width:30px;height:30px;flex:0 0 30px;color:var(--acc)}
 .hc-t{font-weight:700;font-size:1rem;line-height:1.2}
 .hc-s{font-size:.8rem;color:var(--muted)}
+.hc-city{position:relative;display:inline-flex;align-items:center;gap:4px;cursor:pointer;border-bottom:1.5px dashed color-mix(in srgb,var(--acc) 60%,transparent);color:var(--acc)}
+.hc-t .hc-city svg{width:14px!important;height:14px!important;flex:0 0 14px;display:inline-block}
+.hc-city select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;border:0}
+.hc-city:focus-within{outline:2px solid var(--pasture);outline-offset:2px;border-radius:4px}
+.hc-na{font-size:.8rem;color:var(--muted);background:var(--strip);border-radius:10px;padding:10px 12px;margin-top:4px}
 .hc-p{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-top:6px}
 .hc-v{font-size:2.3rem;font-weight:800;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .hc-v small{font-size:1.15rem;font-weight:700;color:var(--muted);letter-spacing:0}
@@ -337,24 +342,32 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
   var city="Ibirapitanga";
   function isEq(c){ return cid&&cid.bahia!=null&&Math.abs(c.conv-cid.bahia)<0.015; }
   function cityList(){ return (cid&&cid.cidades||[]).filter(function(c){return c&&c.nome&&c.conv!=null;}); }
-  function cpicker(){
-    var cs=cityList(), sel=$("csel");
-    if(cs.length<2){ $("cpick").style.display="none"; return; }
+  try{ var sc=localStorage.getItem("cacau_city"); if(sc) city=sc; }catch(e){}
+  function cityOpts(){
+    var cs=cityList(); if(cs.length<2) return "";
     var by=function(a,b){return a.nome.localeCompare(b.nome,"pt-BR");};
     var main=lastTwo("cacau_ba_conv")[0];
-    var o=function(c){ var v=(c.nome==="Ibirapitanga"&&main)?main.v:c.conv; return '<option value="'+c.nome+'"'+(c.nome===city?' selected':'')+'>'+c.nome+' — R$ '+brl(v,2)+'</option>'; };
+    var o=function(c){ var v=((c.nome==="Ibirapitanga"||isEq(c))&&main)?main.v:c.conv; return '<option value="'+c.nome+'"'+(c.nome===city?' selected':'')+'>'+c.nome+' — R$ '+brl(v,2)+'</option>'; };
     var ibi=cs.filter(function(c){return c.nome==="Ibirapitanga";});
     var eq=cs.filter(function(c){return c.nome!=="Ibirapitanga"&&isEq(c);}).sort(by);
     var own=cs.filter(function(c){return c.nome!=="Ibirapitanga"&&!isEq(c);}).sort(by);
-    sel.innerHTML=(ibi.length?ibi.map(o).join(""):'<option value="Ibirapitanga" selected>Ibirapitanga</option>')+
+    var html=(ibi.length?ibi.map(o).join(""):'<option value="Ibirapitanga" selected>Ibirapitanga</option>')+
       (eq.length?'<optgroup label="Mesmo preço da Bahia">'+eq.map(o).join("")+'</optgroup>':'')+
       (own.length?'<optgroup label="Preço próprio da praça">'+own.map(o).join("")+'</optgroup>':'');
-    $("cpick-t").textContent=city; $("cpick").style.display="";
+    return html;
   }
+  function cpicker(){
+    if(city!=="Ibirapitanga"&&!cityList().some(function(x){return x.nome===city;})) city="Ibirapitanga";
+    var h=cityOpts();
+    if(!h){ $("cpick").style.display="none"; return; }
+    $("csel").innerHTML=h; $("cpick-t").textContent=city; $("cpick").style.display="";
+  }
+  function setCity(v){ city=v; try{ localStorage.setItem("cacau_city",v); }catch(e){} cpicker(); heroes(); cacau(); }
   function cacau(){
     var el=$("l-cacau");
     var c=null; cityList().forEach(function(x){ if(x.nome===city) c=x; });
     if(city==="Ibirapitanga"||!c){ list(el, ITEMS.cacau); return; }
+    if(isEq(c)){ list(el, ITEMS.cacau.map(function(it){ return it.usd?it:{f:it.f,nm:it.nm,sub:c.nome+" · mesmo preço da Bahia",u:it.u}; })); return; }
     var vp=function(v){ if(v==null) return ""; var k=Math.abs(v)<0.05?"flat":(v>0?"up":"down");
       return '<span class="pill '+k+'" title="vs dia anterior">'+(k==="flat"?"=":(v>0?"▲":"▼"))+' '+brl(Math.abs(v),1)+'%</span>'; };
     var when=(cid.data?dm(cid.data):"")+(cid.hora?" às "+cid.hora:"");
@@ -369,7 +382,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
     var tmp=document.createElement("div"); list(tmp,[ITEMS.cacau[2]]); html+=tmp.innerHTML;
     el.innerHTML=html;
   }
-  $("csel").addEventListener("change",function(){ city=this.value; $("cpick-t").textContent=city; cacau(); });
+  $("csel").addEventListener("change",function(){ setCity(this.value); });
 
   function hist(){
     var cell=function(v,d){ return v==null?'<td class="na">–</td>':'<td>'+brl(v,d)+'</td>'; };
@@ -409,9 +422,31 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
     return '<svg viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true"><path d="'+d+'L'+x(pts.length-1)+','+H+'L'+x(0)+','+H+'Z" fill="'+acc+'" opacity=".1"/><path d="'+d+'" fill="none" stroke="'+acc+'" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="'+x(pts.length-1)+'" cy="'+y(e.v)+'" r="3.5" fill="'+acc+'"/></svg>';
   }
   function hhora(f,d){ if(f.indexOf("cacau")!==0) return ""; for(var i=rows.length-1;i>=0;i--){ if(rows[i].data===d) return rows[i].cacau_hora?' às '+rows[i].cacau_hora:''; } return ""; }
+  var PIN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function heroTitle(k,h){
+    if(k!==0) return h.t;
+    var o=cityOpts(); if(!o) return h.t;
+    return 'Cacau · <label class="hc-city">'+city+PIN+'<select class="hsel" aria-label="Escolher município para a cotação do cacau">'+o+'</select></label>';
+  }
+  function cityHero(el,c){
+    var vp=c["var"], pl="";
+    if(vp!=null){ var k=Math.abs(vp)<0.05?"flat":(vp>0?"up":"down"); pl='<span class="pill '+k+'" title="vs dia anterior">'+(k==="flat"?"= ":(vp>0?"▲ ":"▼ "))+brl(Math.abs(vp),2)+'%</span>'; }
+    var parts=brl(c.conv,2).split(","), when=(cid.data?dm(cid.data):"")+(cid.hora?" às "+cid.hora:"");
+    var ibi=lastTwo("cacau_ba_conv")[0], st="";
+    if(ibi){ var d=c.conv-ibi.v; st='<span>Ibirapitanga</span><span><b>R$ '+brl(ibi.v,2)+'</b><span class="d '+(d>=0?"pos":"neg")+'">'+c.nome+' '+(d>=0?"+":"−")+'R$ '+brl(Math.abs(d),2)+'</span></span>'; }
+    el.innerHTML='<div class="hc-h">'+ICON.pod+'<div><div class="hc-t">'+heroTitle(0,HERO[0])+'</div><div class="hc-s">BA · preço próprio da praça · convencional</div></div></div>'+
+      '<div class="hc-p"><div class="hc-v">R$ '+parts[0]+'<small>,'+parts[1]+'</small></div>'+pl+'</div>'+
+      '<div class="hc-u">por arroba (15 kg)'+(when?' · '+when:'')+'</div>'+
+      '<div class="hc-na">Esta praça tem preço próprio: o painel mostra a cotação do dia, sem histórico de 30 dias.</div>'+
+      (st?'<div class="hc-st">'+st+'</div>':'')+
+      (cid.bahia_cert!=null?'<div class="hc-st"><span>Certificado (Bahia)</span><span><b>R$ '+brl(cid.bahia_cert,2)+'</b></span></div>':'')+
+      '<div class="hc-ft"><span>Fonte: Preço do Cacau · por região</span></div>';
+  }
   function heroes(){
     var cards=$("hero").children, accs=["var(--cocoa)","var(--pasture)","var(--ox)"];
     HERO.forEach(function(h,k){
+      if(k===0&&city!=="Ibirapitanga"){ var cc=null; cityList().forEach(function(x){ if(x.nome===city) cc=x; });
+        if(cc&&!isEq(cc)){ cityHero(cards[0],cc); return; } }
       var dv=h.dv||1, lt=lastTwo(h.f), raw=lt[0], el=cards[k];
       var cur=raw&&{v:raw.v/dv,d:raw.d}, prev=lt[1]&&{v:lt[1].v/dv,d:lt[1].d};
       if(!cur){ el.innerHTML='<div class="msg">Sem cotação ainda.</div>'; return; }
@@ -424,7 +459,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
         pl='<span class="pill '+c+'" title="vs '+dm(prev.d)+'">'+(c==="flat"?"= ":(pc>0?"▲ ":"▼ "))+brl(Math.abs(pc),2)+'%</span>'; }
       var since = dDiff(cur.d,first.d)+1 < hRange[k] ? " (desde "+dm(first.d)+")" : "";
       el.innerHTML =
-        '<div class="hc-h">'+ICON[h.ic]+'<div><div class="hc-t">'+h.t+'</div><div class="hc-s">'+h.s+'</div></div></div>'+
+        '<div class="hc-h">'+ICON[h.ic]+'<div><div class="hc-t">'+heroTitle(k,h)+'</div><div class="hc-s">'+(k===0&&city!=="Ibirapitanga"?"BA · mesmo preço da Bahia · convencional":h.s)+'</div></div></div>'+
         '<div class="hc-p"><div class="hc-v">R$ '+parts[0]+'<small>,'+parts[1]+'</small></div>'+pl+'</div>'+
         '<div class="hc-u">'+h.u(raw.v)+' · '+(cur.d===latest?dm(cur.d):'<span class="old">mantido de '+dm(cur.d)+'</span>')+hhora(h.f,cur.d)+'</div>'+
         '<div class="hc-rg" role="group" aria-label="Período">'+[7,15,30].map(function(n){return '<button type="button" data-k="'+k+'" data-n="'+n+'" aria-pressed="'+(hRange[k]===n)+'">'+n+'d</button>';}).join("")+'</div>'+
@@ -434,6 +469,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
         '<div class="hc-ft"><span>'+h.ft+' em '+hRange[k]+' dias'+since+'</span><b class="'+(Math.abs(per)<0.005?"neu":(per>0?"pos":"neg"))+'">'+(per>0?"+":"")+brl(per,2)+'%</b></div>';
     });
   }
+  $("hero").addEventListener("change",function(e){ if(e.target.classList.contains("hsel")) setCity(e.target.value); });
   $("hero").addEventListener("click",function(e){ var b=e.target.closest(".hc-rg button"); if(!b) return; hRange[+b.getAttribute("data-k")]=+b.getAttribute("data-n"); heroes(); });
 
   function render(){
@@ -441,7 +477,7 @@ dialog.wx7::backdrop{background:rgba(20,14,8,.55)}
     var hora = "";
     if(upd){ var t=new Date(upd); if(!isNaN(t)) hora = t.toLocaleString("pt-BR",{timeZone:"America/Bahia",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).replace(",", " às"); }
     $("when").innerHTML = last ? 'Cotações de<b>'+dmy(last.data)+'</b>'+(hora?'<small style="display:block;opacity:.85">atualizado '+hora+'</small>':'') : 'Sem dados';
-    heroes(); list($("l-gado"), ITEMS.gado); cpicker(); cacau();
+    cpicker(); heroes(); list($("l-gado"), ITEMS.gado); cacau();
     drawTabs(); drawChart(); calc(); hist();
   }
 
