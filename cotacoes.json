@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-10-19T17:09:08-03:00",
+  "atualizadoEm": "2026-10-20T11:14:58-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
-    "data": "2026-10-19",
+    "data": "2026-10-20",
     "hora": "07:00",
     "bahia": 264.58,
     "bahia_cert": 349.09,
@@ -60,7 +60,7 @@
         "var": -0.05
       },
       {
-        "nome": "Itubera",
+        "nome": "Ituberá",
         "conv": 264.58,
         "var": -0.05
       },
@@ -242,13 +242,13 @@
     },
     {
       "data": "2026-10-12",
-      "cacau_ba_conv": 266.72,
+      "cacau_ba_conv": 265.62,
       "cacau_ba_cert": 363.29,
       "cacau_ny": 5666
     },
     {
       "data": "2026-10-13",
-      "cacau_ba_conv": 279.12,
+      "cacau_ba_conv": 278.08,
       "cacau_ba_cert": 375.78,
       "cacau_ny": 5802,
       "bez_nel_ba": 3650,
@@ -260,7 +260,7 @@
     },
     {
       "data": "2026-10-14",
-      "cacau_ba_conv": 274.68,
+      "cacau_ba_conv": 273.67,
       "cacau_ba_cert": 371.4,
       "cacau_ny": 5923,
       "bez_nel_ba": 3650,
@@ -272,10 +272,9 @@
     },
     {
       "data": "2026-10-15",
-      "cacau_ba_conv": 280.72,
+      "cacau_ba_conv": 279.77,
       "cacau_ba_cert": 366.37,
       "cacau_ny": 5640,
-      "cacau_hora": "21:00",
       "bez_nel_ba": 3670,
       "bez_mes_ba": 3035,
       "desm_nel_ba": 3136.25,
@@ -289,7 +288,7 @@
       "bez_mes_ba": 3035,
       "desm_nel_ba": 3136.25,
       "bez_media_br": 3778.78,
-      "cacau_ba_conv": 264.96,
+      "cacau_ba_conv": 271.69,
       "cacau_ba_cert": 357.98,
       "cacau_ny": 5794,
       "bez_cepea_ms": 3489.71,
@@ -297,15 +296,22 @@
     },
     {
       "data": "2026-10-19",
-      "cacau_ba_conv": 264.7,
+      "cacau_ba_conv": 270.77,
       "cacau_ba_cert": 348.92,
-      "cacau_hora": "15:00",
       "cacau_ny": 5686,
       "bez_nel_ba": 3670,
       "bez_mes_ba": 3035,
       "desm_nel_ba": 3136.25,
       "bez_media_br": 3778.78,
-      "boi_ba_sul": 356
+      "boi_ba_sul": 356,
+      "bez_cepea_ms": 3498.89
+    },
+    {
+      "data": "2026-10-20",
+      "cacau_ba_conv": 281.73,
+      "cacau_ba_cert": 365.45,
+      "cacau_hora": "11:00",
+      "cacau_ny": 5675
     }
   ]
 }
