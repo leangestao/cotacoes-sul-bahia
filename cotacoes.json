@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-10-20T19:13:45-03:00",
+  "atualizadoEm": "2026-10-21T12:10:09-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
-    "data": "2026-10-20",
+    "data": "2026-10-21",
     "hora": "11:00",
     "bahia": 281.73,
     "bahia_cert": 365.45,
@@ -248,7 +248,7 @@
     },
     {
       "data": "2026-10-13",
-      "cacau_ba_conv": 278.08,
+      "cacau_ba_conv": 278.88,
       "cacau_ba_cert": 375.78,
       "cacau_ny": 5802,
       "bez_nel_ba": 3650,
@@ -260,7 +260,7 @@
     },
     {
       "data": "2026-10-14",
-      "cacau_ba_conv": 273.67,
+      "cacau_ba_conv": 274.47,
       "cacau_ba_cert": 371.4,
       "cacau_ny": 5923,
       "bez_nel_ba": 3650,
@@ -272,7 +272,7 @@
     },
     {
       "data": "2026-10-15",
-      "cacau_ba_conv": 279.77,
+      "cacau_ba_conv": 280.59,
       "cacau_ba_cert": 366.37,
       "cacau_ny": 5640,
       "bez_nel_ba": 3670,
@@ -288,7 +288,7 @@
       "bez_mes_ba": 3035,
       "desm_nel_ba": 3136.25,
       "bez_media_br": 3778.78,
-      "cacau_ba_conv": 271.69,
+      "cacau_ba_conv": 272.5,
       "cacau_ba_cert": 357.98,
       "cacau_ny": 5794,
       "bez_cepea_ms": 3489.71,
@@ -296,7 +296,7 @@
     },
     {
       "data": "2026-10-19",
-      "cacau_ba_conv": 270.77,
+      "cacau_ba_conv": 271.57,
       "cacau_ba_cert": 348.92,
       "cacau_ny": 5686,
       "bez_nel_ba": 3670,
@@ -308,14 +308,21 @@
     },
     {
       "data": "2026-10-20",
-      "cacau_ba_conv": 281.73,
+      "cacau_ba_conv": 278.5,
       "cacau_ba_cert": 365.45,
-      "cacau_hora": "11:00",
       "cacau_ny": 5675,
       "bez_nel_ba": 3670,
       "bez_mes_ba": 3035,
       "desm_nel_ba": 3136.25,
-      "bez_media_br": 3778.78
+      "bez_media_br": 3778.78,
+      "bez_cepea_ms": 3501.39
+    },
+    {
+      "data": "2026-10-21",
+      "cacau_ba_conv": 272.79,
+      "cacau_ba_cert": 356.77,
+      "cacau_hora": "11:00",
+      "cacau_ny": 5703
     }
   ]
 }
