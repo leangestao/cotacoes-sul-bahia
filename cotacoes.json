@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-21T13:11:05-03:00",
+  "atualizadoEm": "2026-10-22T11:12:59-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
     "data": "2026-10-21",
@@ -315,14 +315,26 @@
       "bez_mes_ba": 3035,
       "desm_nel_ba": 3136.25,
       "bez_media_br": 3778.78,
-      "bez_cepea_ms": 3501.39
+      "bez_cepea_ms": 3501.39,
+      "boi_ba_sul": 363
     },
     {
       "data": "2026-10-21",
-      "cacau_ba_conv": 280.66,
+      "cacau_ba_conv": 281.5,
       "cacau_ba_cert": 364.78,
-      "cacau_hora": "13:00",
-      "cacau_ny": 5703
+      "cacau_ny": 5703,
+      "bez_nel_ba": 3670,
+      "bez_mes_ba": 3035,
+      "desm_nel_ba": 3136.25,
+      "bez_media_br": 3778.78,
+      "bez_cepea_ms": 3507.45
+    },
+    {
+      "data": "2026-10-22",
+      "cacau_ba_conv": 264.16,
+      "cacau_ba_cert": 348.25,
+      "cacau_hora": "11:01",
+      "cacau_ny": 5614
     }
   ]
 }
