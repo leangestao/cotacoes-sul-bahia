@@ -1,98 +1,98 @@
 {
-  "atualizadoEm": "2026-11-03T09:29:20-03:00",
+  "atualizadoEm": "2026-11-03T09:35:05-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
-    "data": "2026-10-30",
-    "hora": "19:01",
-    "bahia": 289.99,
-    "bahia_cert": 371.59,
-    "bahia_var": 0.88,
+    "data": "2026-11-03",
+    "hora": "09:00",
+    "bahia": 290.87,
+    "bahia_cert": 372.78,
+    "bahia_var": 2.14,
     "fonte": "https://precodocacau.com.br/cotacao/",
     "cidades": [
       {
         "nome": "Ilhéus",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Wenceslau Guimarães",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Ibirapitanga",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Itabuna",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Camacan",
-        "conv": 220.0,
-        "var": -8.33
+        "conv": 213,
+        "var": -3.18
       },
       {
         "nome": "Mutuípe",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Gandu",
-        "conv": 280.0,
-        "var": 0.0
+        "conv": 280,
+        "var": 0
       },
       {
         "nome": "Camamu",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Una",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Uruçuca",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
-        "nome": "Itubera",
-        "conv": 289.99,
-        "var": 0.88
+        "nome": "Ituberá",
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Valença",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Ipiaú",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Ubatã",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Canavieiras",
-        "conv": 289.99,
-        "var": 0.88
+        "conv": 290.87,
+        "var": 2.14
       },
       {
         "nome": "Eunápolis",
-        "conv": 280.0,
+        "conv": 280,
         "var": 5.66
       },
       {
         "nome": "Itamaraju",
-        "conv": 282.0,
-        "var": -2.76
+        "conv": 280,
+        "var": -0.71
       }
     ]
   },
