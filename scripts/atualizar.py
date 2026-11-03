@@ -186,7 +186,9 @@ def main():
             it[k] = v
 
     try:
-        for data, campos in gado().items():
+        g = gado()
+        print("gado:", g)
+        for data, campos in g.items():
             for k, v in campos.items():
                 setv(data, k, v)
     except Exception as e:
