@@ -1,0 +1,36 @@
+name: Atualizar cotações
+on:
+  schedule:
+    # Horário da Bahia = UTC-3. Seg-sex das 8h às 19h e às 21h (Bahia).
+    - cron: "17 11-22 * * 1-5"
+    - cron: "17 0 * * 2-6"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cotacoes
+  cancel-in-progress: false
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install beautifulsoup4==4.12.3
+      - run: python scripts/atualizar.py
+      - name: Gravar no site
+        run: |
+          python -c "import json;json.load(open('cotacoes.json'))"
+          if git diff --quiet cotacoes.json; then echo "Sem mudanças."; exit 0; fi
+          git config user.name leangestao
+          git config user.email leandro.domsis@gmail.com
+          git add cotacoes.json
+          git commit -m "Cotações $(TZ=America/Bahia date '+%F %H:%M') (robô)"
+          for i in 1 2 3; do
+            git push origin HEAD:main && exit 0
+            git pull --rebase origin main
+          done
+          exit 1
