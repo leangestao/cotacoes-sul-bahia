@@ -1,33 +1,33 @@
 {
-  "atualizadoEm": "2026-11-03T13:10:01-03:00",
+  "atualizadoEm": "2026-11-03T15:05:11-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
     "data": "2026-11-03",
-    "hora": "13:00",
-    "bahia": 290.8,
-    "bahia_cert": 373.2,
-    "bahia_var": 2.12,
+    "hora": "15:00",
+    "bahia": 289.54,
+    "bahia_cert": 371.87,
+    "bahia_var": 1.68,
     "fonte": "https://precodocacau.com.br/cotacao/",
     "cidades": [
       {
         "nome": "Ilhéus",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Wenceslau Guimarães",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Ibirapitanga",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Itabuna",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Camacan",
@@ -36,8 +36,8 @@
       },
       {
         "nome": "Mutuípe",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Gandu",
@@ -46,43 +46,43 @@
       },
       {
         "nome": "Camamu",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Una",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Uruçuca",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Ituberá",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Valença",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Ipiaú",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Ubatã",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Canavieiras",
-        "conv": 290.8,
-        "var": 2.12
+        "conv": 289.54,
+        "var": 1.68
       },
       {
         "nome": "Eunápolis",
@@ -393,14 +393,19 @@
       "cacau_ba_conv": 289.99,
       "cacau_ba_cert": 371.59,
       "cacau_hora": "21:00",
-      "cacau_ny": 5454
+      "cacau_ny": 5454,
+      "boi_ba_sul": 366
     },
     {
       "data": "2026-11-03",
-      "cacau_ba_conv": 290.8,
-      "cacau_ba_cert": 373.2,
-      "cacau_hora": "13:00",
-      "cacau_ny": 5429
+      "cacau_ba_conv": 289.54,
+      "cacau_ba_cert": 371.87,
+      "cacau_hora": "15:00",
+      "cacau_ny": 5417,
+      "bez_nel_ba": 3800,
+      "bez_media_br": 3837.2,
+      "bez_mes_ba": 3089.56,
+      "desm_nel_ba": 3185
     }
   ]
 }
