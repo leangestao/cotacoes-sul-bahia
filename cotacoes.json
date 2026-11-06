@@ -1,12 +1,12 @@
 {
-  "atualizadoEm": "2026-11-06T16:14:13-03:00",
+  "atualizadoEm": "2026-11-06T17:04:48-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
     "data": "2026-11-06",
-    "hora": "15:00",
-    "bahia": 264.9,
-    "bahia_cert": 347.35,
-    "bahia_var": -1.78,
+    "hora": "17:00",
+    "bahia": 266.03,
+    "bahia_cert": 348.68,
+    "bahia_var": -1.36,
     "fonte": "https://precodocacau.com.br/cotacao/",
     "cidades": [
       {
@@ -16,13 +16,13 @@
       },
       {
         "nome": "Wenceslau Guimarães",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Ibirapitanga",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Itabuna",
@@ -36,8 +36,8 @@
       },
       {
         "nome": "Mutuípe",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Gandu",
@@ -46,28 +46,28 @@
       },
       {
         "nome": "Camamu",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Una",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Uruçuca",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Ituberá",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Valença",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Ipiaú",
@@ -76,13 +76,13 @@
       },
       {
         "nome": "Ubatã",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Canavieiras",
-        "conv": 264.9,
-        "var": -1.78
+        "conv": 266.03,
+        "var": -1.36
       },
       {
         "nome": "Eunápolis",
@@ -437,10 +437,10 @@
     },
     {
       "data": "2026-11-06",
-      "cacau_ba_conv": 264.9,
-      "cacau_ba_cert": 347.35,
-      "cacau_hora": "15:00",
-      "cacau_ny": 5113,
+      "cacau_ba_conv": 266.03,
+      "cacau_ba_cert": 348.68,
+      "cacau_hora": "17:00",
+      "cacau_ny": 5119,
       "bez_nel_ba": 3840,
       "bez_media_br": 3877.46,
       "bez_mes_ba": 3080,
