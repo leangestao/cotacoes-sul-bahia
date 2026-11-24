@@ -1,11 +1,11 @@
 {
-  "atualizadoEm": "2026-11-23T21:23:11-03:00",
+  "atualizadoEm": "2026-11-24T06:57:27-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
-    "data": "2026-11-23",
-    "hora": "21:00",
-    "bahia": 274.01,
-    "bahia_cert": 380.76,
+    "data": "2026-11-24",
+    "hora": "05:00",
+    "bahia": 274.02,
+    "bahia_cert": 380.78,
     "bahia_var": -0.75,
     "fonte": "https://precodocacau.com.br/cotacao/",
     "cidades": [
@@ -16,12 +16,12 @@
       },
       {
         "nome": "Wenceslau Guimarães",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
         "nome": "Ibirapitanga",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
@@ -36,7 +36,7 @@
       },
       {
         "nome": "Mutuípe",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
@@ -46,27 +46,27 @@
       },
       {
         "nome": "Camamu",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
         "nome": "Una",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
         "nome": "Uruçuca",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
         "nome": "Ituberá",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
         "nome": "Valença",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
@@ -76,12 +76,12 @@
       },
       {
         "nome": "Ubatã",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
         "nome": "Canavieiras",
-        "conv": 274.01,
+        "conv": 274.02,
         "var": -0.75
       },
       {
@@ -546,6 +546,13 @@
       "cacau_ba_conv": 274.01,
       "cacau_ba_cert": 380.76,
       "cacau_hora": "21:00",
+      "cacau_ny": 5281
+    },
+    {
+      "data": "2026-11-24",
+      "cacau_ba_conv": 274.02,
+      "cacau_ba_cert": 380.78,
+      "cacau_hora": "05:00",
       "cacau_ny": 5281
     }
   ]
