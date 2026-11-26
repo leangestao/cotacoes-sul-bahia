@@ -1,12 +1,12 @@
 {
-  "atualizadoEm": "2026-11-26T00:38:08-03:00",
+  "atualizadoEm": "2026-11-26T05:24:06-03:00",
   "fontes": "Gado: Scot Consultoria e Cepea/Esalq (via Notícias Agrícolas). Cacau: precodocacau.com.br (Ibirapitanga; cidades do Sul da Bahia em cacau_cidades).",
   "cacau_cidades": {
-    "data": "2026-11-25",
-    "hora": "21:00",
+    "data": "2026-11-26",
+    "hora": "05:00",
     "bahia": 280.79,
     "bahia_cert": 376.7,
-    "bahia_var": -2.09,
+    "bahia_var": 0,
     "fonte": "https://precodocacau.com.br/cotacao/",
     "cidades": [
       {
@@ -17,12 +17,12 @@
       {
         "nome": "Wenceslau Guimarães",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Ibirapitanga",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Itabuna",
@@ -37,7 +37,7 @@
       {
         "nome": "Mutuípe",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Gandu",
@@ -47,27 +47,27 @@
       {
         "nome": "Camamu",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Una",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Uruçuca",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Ituberá",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Valença",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Ipiaú",
@@ -77,12 +77,12 @@
       {
         "nome": "Ubatã",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Canavieiras",
         "conv": 280.79,
-        "var": -2.09
+        "var": 0
       },
       {
         "nome": "Eunápolis",
@@ -566,7 +566,8 @@
       "data": "2026-11-26",
       "cacau_ba_conv": 280.79,
       "cacau_ba_cert": 376.7,
-      "cacau_ny": 5421
+      "cacau_ny": 5421,
+      "cacau_hora": "05:00"
     }
   ]
 }
